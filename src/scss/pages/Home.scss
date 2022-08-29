@@ -1,0 +1,100 @@
+.leftTopCircle {
+    position: absolute;
+    width: 572px;
+    height: 572px;
+    left: -177px;
+    top: -235px;
+    border-radius: 50%;
+    background: linear-gradient(216.43deg, #12A6E5 40.24%, #0FE37E 81.95%);
+}
+
+.rightTopCircle {
+    position: absolute;
+    width: 296px;
+    height: 296px;
+    right: -62px;
+    top: -66px;
+    border-radius: 50%;
+    background: linear-gradient(216.43deg, #12A6E5 40.24%, #0FE37E 81.95%);
+}
+
+.rightBottom1Circle {
+    position: absolute;
+    width: 194px;
+    height: 194px;
+    right: 76px;
+    bottom: 61px;
+    background: linear-gradient(180deg, rgba(132, 132, 132, 0.38) 0%, rgba(255, 255, 255, 0.04) 100%);
+    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    z-index: 3;
+}
+
+.rightBottom2Circle {
+    position: absolute;
+    width: 77px;
+    height: 77px;
+    right: 40px;
+    bottom: 144px;
+    border-radius: 50%;
+    background: linear-gradient(228.43deg, #00ABF3 24.69%, #05FF00 82.39%);
+}
+
+.rightBottom3Circle {
+    position: absolute;
+    width: 119px;
+    height: 119px;
+    right: 173px;
+    bottom: 25px;
+    border-radius: 50%;
+    background: linear-gradient(216.43deg, #12A6E5 40.24%, #0FE37E 81.95%);
+}
+
+.leftBottom1Circle {
+    position: absolute;
+    width: 119px;
+    height: 119px;
+    left: 54px;
+    bottom: -69px;
+    border-radius: 50%;
+    background: linear-gradient(91.81deg, #12A6E5 20.68%, #0FE37E 98.15%);
+}
+
+.leftBotom2Circle {
+    position: absolute;
+    width: 49px;
+    height: 49px;
+    left: 51px;
+    bottom: 21px;
+    background: linear-gradient(180deg, rgba(132, 132, 132, 0.38) 0%, rgba(255, 255, 255, 0.04) 100%);
+    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+}
+
+
+.iconHome {
+    position: absolute;
+    width: 106.36px;
+    height: 110px;
+    left: 341.82px;
+    top: 51px;
+}
+
+.AboutMe1 {
+    position: absolute;
+    width: 114.41px;
+    height: 81.35px;
+    left: 258px;
+    top: 221px;
+
+}
+
+.AboutMe2 {
+    position: absolute;
+    width: 106.36px;
+    height: 110px;
+    left: 262px;
+    top: 218px;
+}
