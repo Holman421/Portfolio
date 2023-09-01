@@ -57,6 +57,7 @@ const LoadingBar: React.FC = () => {
          >
             {loadingBarsArray.map((_, index) => (
                <SingleLoadTile
+                  key={index}
                   currentLoadStatus={loadingState}
                   tileLoadStatus={index}
                />

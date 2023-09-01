@@ -90,16 +90,16 @@ const NavLink: React.FC<NavLinkProps> = ({ label, number, to }) => {
                   borderBottom: ".8rem solid #111111",
                },
                //top right corner shape
-               ":before": {
-                  content: '""',
-                  position: "absolute !important",
-                  top: "0",
-                  right: "0",
-                  width: "0",
-                  height: "0",
-                  borderLeft: ".8rem solid transparent",
-                  borderTop: ".8rem solid #111111",
-               },
+               //  ":before": {
+               //     content: '""',
+               //     position: "absolute !important",
+               //     top: "0",
+               //     right: "0",
+               //     width: "0",
+               //     height: "0",
+               //     borderLeft: ".8rem solid transparent",
+               //     borderTop: ".8rem solid #111111",
+               //  },
             },
          }}
       >

@@ -11,7 +11,7 @@ const Header = () => {
             display: "flex",
             justifyContent: "flex-end",
             alignItems: "center",
-            border: "1px solid white",
+            // border: "1px solid white",
          }}
       >
          <Navbar />

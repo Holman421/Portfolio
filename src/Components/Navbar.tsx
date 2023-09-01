@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
+import NavLink from "./NavLink";
 
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -34,8 +35,8 @@ const NavbarLink: React.FC<NavbarLinkProps> = ({ label, to }) => {
             clearInterval(interval);
          }
 
-         iteration += 1 / 4;
-      }, 20);
+         iteration += 1 / 3;
+      }, 30);
    };
 
    const handleWidth = () => {
@@ -68,15 +69,14 @@ const Navbar = () => {
          component="nav"
          sx={{
             display: "flex",
-            gap: "1rem",
+            gap: "1.25rem",
             marginRight: "2rem",
          }}
       >
-         <NavbarLink label="PROJECTS" to="#projects" />
-         <NavbarLink label="SKILLS" to="#skills" />
-         <NavbarLink label="ABOUT.ME" to="#aboutMe" />
-         <NavbarLink label="TIMELINE" to="#timeline" />
-         <NavbarLink label="CONTACT.ME" to="#contactMe" />
+         <NavLink label="PROJECTS" number="01" to="#projects" />
+         <NavLink label="ABOUT" number="03" to="#aboutMe" />
+         <NavLink label="TIMELINE" number="04" to="#timeline" />
+         <NavLink label="CONTACT" number="05" to="#contactMe" />
       </Box>
    );
 };

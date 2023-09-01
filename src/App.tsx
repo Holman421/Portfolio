@@ -1,13 +1,12 @@
 import React from "react";
 import Header from "./Layout/Header";
-import HeroSection from "./Sections/HeroSection/HeroSection";
-import ProjectSection from "./Sections/ProjectsSection/ProjectSection";
-import AboutMeSection from "./Sections/AboutMeSection/AboutMeSection";
+import HeroSection from "./Sections/HeroSection";
+import ProjectSection from "./Sections/ProjectSection";
+import AboutMeSection from "./Sections/AboutMeSection";
 import { Box } from "@mui/material";
 import { black } from "./Config/Colors";
-import ContactMeSection from "./Sections/ContactMeSection/ContactMeSection";
-import SkillsSection from "./Sections/SkillsSection.tsx/SkillsSection";
-import TimelineSection from "./Sections/TimelineSection/TimelineSection";
+import ContactMeSection from "./Sections/ContactMeSection";
+import TimelineSection from "./Sections/TimelineSection";
 
 function App() {
    return (
@@ -20,20 +19,9 @@ function App() {
          }}
       >
          <Header />
-         <Box
-            sx={{
-               position: "absolute",
-               paddig: "1rem",
-               height: "200vh",
-               width: "3.5rem",
-               top: "0rem",
-               left: "2rem",
-               border: "1px solid white",
-            }}
-         />
+
          <HeroSection />
          <ProjectSection />
-         <SkillsSection />
          <AboutMeSection />
          <TimelineSection />
          <ContactMeSection />
