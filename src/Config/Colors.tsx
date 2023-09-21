@@ -15,4 +15,6 @@ export const turquoise2 = "35A29F";
 export const mint = "97FEED";
 
 // Cool cyberpunk color
-export const cyberpunkMint = "#22ECE0";
+export const mainDark = "#1B4367";
+export const mainLight = "#6CBEEA";
+export const background = "#111111"

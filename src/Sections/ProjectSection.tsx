@@ -1,60 +1,72 @@
-import React from "react";
-import { Box } from "@mui/material";
+import React, { Ref } from "react";
+import { Box, BoxProps } from "@mui/material";
 import { Element } from "react-scroll";
 import TextWrapper from "../Components/TextWrapper";
+import SectionWrapper from "../Components/SectionWrapper";
 
-const ProjectSection = () => {
+const ProjectSection: React.FC = () => {
    return (
-      <Element name="#projects">
+      <SectionWrapper
+         nameForNavigation="#projects"
+         index={1}
+         sx={{ paddingTop: "5rem", display: "flex" }}
+      >
          <Box
             sx={{
-               width: "100%",
-               display: "flex",
-               flexDirection: "column",
-               alignItems: "center",
+               textAlign: "center",
+               fontSize: "3rem",
+               marginBottom: "4rem",
             }}
          >
-            <Box
-               sx={{
-                  textAlign: "center",
-                  fontSize: "3rem",
-                  marginBottom: "4rem",
-               }}
-            >
-               Projects
-            </Box>
-            <Box
-               sx={{
-                  display: "grid",
-                  gridTemplateRows: "1fr 1fr",
-                  gridTemplateColumns: "20rem 20rem",
-                  gap: "16px",
-                  justifyItems: "center",
-               }}
-            >
-               <TextWrapper
-                  sx={{ width: "20rem", height: "10rem", textAlign: "center" }}
-               >
-                  Project 1
-               </TextWrapper>
-               <TextWrapper
-                  sx={{ width: "20rem", height: "10rem", textAlign: "center" }}
-               >
-                  Project 2
-               </TextWrapper>
-               <TextWrapper
-                  sx={{ width: "20rem", height: "10rem", textAlign: "center" }}
-               >
-                  Project 3
-               </TextWrapper>
-               <TextWrapper
-                  sx={{ width: "20rem", height: "10rem", textAlign: "center" }}
-               >
-                  Project 4
-               </TextWrapper>
-            </Box>
+            Projects
          </Box>
-      </Element>
+         <Box
+            sx={{
+               display: "grid",
+               gridTemplateRows: "1fr 1fr",
+               gridTemplateColumns: "20rem 20rem",
+               gap: "16px",
+               justifyItems: "center",
+            }}
+         >
+            <TextWrapper
+               sx={{
+                  width: "20rem",
+                  height: "10rem",
+                  textAlign: "center",
+               }}
+            >
+               Project 1
+            </TextWrapper>
+            <TextWrapper
+               sx={{
+                  width: "20rem",
+                  height: "10rem",
+                  textAlign: "center",
+               }}
+            >
+               Project 2
+            </TextWrapper>
+            <TextWrapper
+               sx={{
+                  width: "20rem",
+                  height: "10rem",
+                  textAlign: "center",
+               }}
+            >
+               Project 3
+            </TextWrapper>
+            <TextWrapper
+               sx={{
+                  width: "20rem",
+                  height: "10rem",
+                  textAlign: "center",
+               }}
+            >
+               Project 4
+            </TextWrapper>
+         </Box>
+      </SectionWrapper>
    );
 };
 

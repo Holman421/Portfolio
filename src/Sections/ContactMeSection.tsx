@@ -1,16 +1,12 @@
 import { Box } from "@mui/material";
 import React from "react";
-import { Element } from "react-scroll";
-import TestThree from "../Components/AvatarModel";
+import SectionWrapper from "../Components/SectionWrapper";
 
-const ContactMeSection = () => {
+const ContactMeSection: React.FC = () => {
    return (
-      <Element name="#contactMe">
-         <Box sx={{ width: "100%", border: "1px solid white" }}>
-            <Box sx={{ margin: "2rem 0rem 2rem 8rem" }}>Contact me</Box>
-         </Box>
-
-      </Element>
+      <SectionWrapper nameForNavigation="#hero" index={4}>
+         <Box sx={{ margin: "2rem 0rem 2rem 8rem" }}>Contact me</Box>
+      </SectionWrapper>
    );
 };
 
