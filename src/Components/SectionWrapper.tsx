@@ -29,9 +29,11 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
                ...sx,
                width: "100%",
                height: "100vh",
-               border: "1px solid white",
+               minHeight: "30rem",
+              //  border: "1px solid white",
                scrollSnapAlign: "start",
                scrollSnapStop: "always",
+               position: "relative",
             }}
          >
             {children}

@@ -1,0 +1,79 @@
+import { Box, Typography } from "@mui/material";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleLanguage } from "../../Redux/reducers/themeReducer";
+import { StoreType } from "../../Redux/store/store";
+import useSelectAppropriateText from "../../Utils/CustomHooks/useSelectAppropriateText";
+import { createClipPath } from "../../Utils/HelperFunctions/createClipPath";
+
+const ContactMeButton = () => {
+   const { clipPathOutside, clipPathInside } = createClipPath<5>(
+      [
+         { x: "0%", y: "0%" },
+         { x: "100% - 1rem", y: "0%" },
+         { x: "100%", y: "0% + 1rem" },
+         { x: "100%", y: "100%" },
+         { x: "0%", y: "100%" },
+      ],
+      [
+         { x: "+ 1px", y: "+ 1px" },
+         { x: "- 1px", y: "+ 1px" },
+         { x: "- 1px", y: "" },
+         { x: "- 1px", y: "- 1px" },
+         { x: "+ 1px", y: "- 1px" },
+      ]
+   );
+
+   const descriptionText = useSelectAppropriateText(
+      "Contact me",
+      "Kontaktuj mě"
+   );
+
+   const isDefaultLanguage = useSelector(
+      (state: StoreType) => state.themeState.isDefaultLanguage
+   );
+
+   const dispatch = useDispatch();
+
+   return (
+      <Box
+         component="button"
+         onClick={() => {
+            dispatch(toggleLanguage(!isDefaultLanguage));
+            console.log(isDefaultLanguage);
+         }}
+         sx={{
+            position: "absolute",
+            padding: "1rem 3rem",
+            top: "7.3rem",
+            right: "10.7rem",
+            background: "#CF6C29",
+            clipPath: clipPathOutside,
+            border: "none",
+            cursor: "pointer",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+
+            "&:hover": { opacity: ".8" },
+            "&::before": {
+               content: '""',
+               position: "absolute",
+               background: "linear-gradient(0deg, #ce6c29 0%, #512b10 100%)",
+               width: "100%",
+               height: "100%",
+               top: "50%",
+               left: "50%",
+               transform: "translate(-50%, -50%)",
+               clipPath: clipPathInside,
+            },
+         }}
+      >
+         <Box sx={{ zIndex: "50", fontSize: "1.25rem", whiteSpace: "nowrap" }}>
+            {descriptionText}
+         </Box>
+      </Box>
+   );
+};
+
+export default ContactMeButton;

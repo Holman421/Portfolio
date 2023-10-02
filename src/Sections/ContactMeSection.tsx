@@ -4,7 +4,7 @@ import SectionWrapper from "../Components/SectionWrapper";
 
 const ContactMeSection: React.FC = () => {
    return (
-      <SectionWrapper nameForNavigation="#hero" index={4}>
+      <SectionWrapper nameForNavigation="#hero" index={3}>
          <Box sx={{ margin: "2rem 0rem 2rem 8rem" }}>Contact me</Box>
       </SectionWrapper>
    );

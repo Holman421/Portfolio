@@ -10,9 +10,9 @@ const MainBox: React.FC = () => {
    return (
       <Box
          sx={{
-            border: "solid 3px #6FBDED",
-            width: ".75rem",
-            height: ".75rem",
+            border: "solid 3px #CF6C29",
+            width: ".7rem",
+            height: ".7rem",
             position: "absolute",
             top: `${currentIndex * 1 - 0.1}rem`,
             transition: "top 200ms ease",
@@ -23,7 +23,7 @@ const MainBox: React.FC = () => {
 
 const CurrentPageIndicator: React.FC = () => {
    const boxStyling = {
-      border: "solid 1px #1B4367",
+      border: "solid 1px #29C4CE",
       width: ".5rem",
       height: ".5rem",
    };
@@ -41,7 +41,6 @@ const CurrentPageIndicator: React.FC = () => {
          }}
       >
          <MainBox />
-         <Box sx={boxStyling} />
          <Box sx={boxStyling} />
          <Box sx={boxStyling} />
          <Box sx={boxStyling} />

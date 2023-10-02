@@ -1,7 +1,5 @@
-import React, { Ref } from "react";
-import { Box, BoxProps } from "@mui/material";
-import { Element } from "react-scroll";
-import TextWrapper from "../Components/TextWrapper";
+import { Box } from "@mui/material";
+import ProjectContainer from "../Components/ProjectContainer/ProjectContainer";
 import SectionWrapper from "../Components/SectionWrapper";
 
 const ProjectSection: React.FC = () => {
@@ -9,62 +7,45 @@ const ProjectSection: React.FC = () => {
       <SectionWrapper
          nameForNavigation="#projects"
          index={1}
-         sx={{ paddingTop: "5rem", display: "flex" }}
       >
          <Box
             sx={{
                textAlign: "center",
                fontSize: "3rem",
-               marginBottom: "4rem",
+               paddingTop: "3%",
             }}
          >
             Projects
          </Box>
          <Box
             sx={{
-               display: "grid",
-               gridTemplateRows: "1fr 1fr",
-               gridTemplateColumns: "20rem 20rem",
-               gap: "16px",
-               justifyItems: "center",
+               position: "absolute",
+               top: "25%",
+               left: "15%",
+               //  transform: "translateY(-50%)",
             }}
          >
-            <TextWrapper
-               sx={{
-                  width: "20rem",
-                  height: "10rem",
-                  textAlign: "center",
-               }}
-            >
-               Project 1
-            </TextWrapper>
-            <TextWrapper
-               sx={{
-                  width: "20rem",
-                  height: "10rem",
-                  textAlign: "center",
-               }}
-            >
-               Project 2
-            </TextWrapper>
-            <TextWrapper
-               sx={{
-                  width: "20rem",
-                  height: "10rem",
-                  textAlign: "center",
-               }}
-            >
-               Project 3
-            </TextWrapper>
-            <TextWrapper
-               sx={{
-                  width: "20rem",
-                  height: "10rem",
-                  textAlign: "center",
-               }}
-            >
-               Project 4
-            </TextWrapper>
+            <ProjectContainer
+               projectName="Creature forge"
+               projectNumber="01"
+               technologies="React.js - Typescript - MUI - OpenAI API"
+               description="Creature Forge is a web app that creates AI-generated pictures of custom fantasy creatures. The user-friendly interface offers various options to create unique features. Once the creature is created, high-quality images can be downloaded and shared."
+            />
+         </Box>
+         <Box
+            sx={{
+               position: "absolute",
+               top: "60%",
+               left: "30%",
+               //  transform: "translate(-50%, -50%)",
+            }}
+         >
+            <ProjectContainer
+               projectName="Chaos Canvas"
+               projectNumber="02"
+               technologies="React.js - Typescript - MUI - Responsivness"
+               description="Chaos Canvas is an interactive platform that allows users to generate random shapes and create unique landscapes. With various settings, users can customize the size and color of elements, as well as adjust the canvas size. Once complete, users can download their final picture."
+            />
          </Box>
       </SectionWrapper>
    );

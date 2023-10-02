@@ -77,7 +77,7 @@ const NavLink: React.FC<NavLinkProps> = ({ label, number, to }) => {
                "&:hover > *": {
                   filter: "drop-shadow(0 0 3px #6FBDED)",
                },
-               "& > *": { cursor: "pointer", marginRight: ".8rem" },
+               "& > *": { cursor: "pointer" },
                //bottom left corner shape
                ":after": {
                   content: '""',
@@ -89,17 +89,6 @@ const NavLink: React.FC<NavLinkProps> = ({ label, number, to }) => {
                   borderRight: ".8rem solid transparent",
                   borderBottom: ".8rem solid #111111",
                },
-               //top right corner shape
-               //  ":before": {
-               //     content: '""',
-               //     position: "absolute !important",
-               //     top: "0",
-               //     right: "0",
-               //     width: "0",
-               //     height: "0",
-               //     borderLeft: ".8rem solid transparent",
-               //     borderTop: ".8rem solid #111111",
-               //  },
             },
          }}
       >
@@ -120,93 +109,7 @@ const NavLink: React.FC<NavLinkProps> = ({ label, number, to }) => {
                bottom: "-.6rem",
                left: ".9rem",
             }}
-         >
-            <Box
-               id="BottomLeftShape"
-               sx={{
-                  backgroundColor: "#6FBDED",
-                  width: "2.5rem",
-                  height: ".5rem",
-
-                  clipPath:
-                     "polygon(0 0, 100% 0, 100% 20%, 30% 20%, 30% 40%, 10% 40%)",
-               }}
-            />
-         </Box>
-         <Box
-            sx={{
-               filter: isHovered ? "drop-shadow(0 0 3px #6FBDED)" : "",
-               position: "absolute",
-               top: ".0rem",
-               right: ".6rem",
-            }}
-         >
-            <Box
-               id="TopRightShape"
-               sx={{
-                  backgroundColor: "#6FBDED",
-                  width: "2.5rem",
-                  height: ".5rem",
-                  clipPath:
-                     "polygon(0 0, 91% 0, 100% 40%, 65% 40%, 58% 20%, 0 20%)",
-               }}
-            />
-         </Box>
-         <Box
-            id="TopLeftShapeParent"
-            sx={{
-               filter: isHovered ? "drop-shadow(0 0 3px #6FBDED)" : "",
-               position: "absolute",
-               top: "-.3rem",
-               left: ".7rem",
-               zIndex: "2",
-            }}
-         >
-            <Box
-               id="TopLeftShape"
-               sx={{
-                  backgroundColor: "#6FBDED",
-                  width: "2.5rem",
-                  height: ".75rem",
-
-                  zIndex: "2",
-                  clipPath:
-                     "polygon(5% 0, 95% 0, 100% 30%, 85% 30%, 80% 45%, 20% 45%, 15% 30%, 0 30%)",
-               }}
-            />
-         </Box>
-         <Box
-            id="TopLeftBlackUnderlineShape"
-            sx={{
-               position: "absolute",
-               backgroundColor: "#111111",
-               width: "2.6rem",
-               height: ".5rem",
-               top: "-.35rem",
-               left: ".65rem",
-               clipPath: "polygon(0 0, 100% 0, 80% 100%, 20% 100%)",
-            }}
-         />
-         <Box
-            id="BottomRightShape"
-            sx={{
-               position: "absolute",
-               backgroundColor: "#6FBDED",
-               padding: ".0rem .3rem",
-               filter: isHovered ? "drop-shadow(0 0 3px #6FBDED)" : "",
-               bottom: "-.1rem",
-               right: "-.1rem",
-               color: "black",
-               display: "flex",
-               justifyContent: "center",
-               alignItems: "center",
-               fontWeight: "600",
-               fontSize: ".6rem",
-               transform: "skew(-10deg)",
-            }}
-         >
-            {number}
-         </Box>
+         ></Box>
       </Box>
    );
 };

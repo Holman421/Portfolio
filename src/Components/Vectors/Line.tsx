@@ -1,37 +1,40 @@
 import { Box } from "@mui/material";
 import React from "react";
-import { mainLight } from "../Config/Colors";
+import { mainPallete } from "../../Config/Colors";
 
 type LineProps = {
+   name?: string;
    color?: string;
    length: string;
-   height?: string;
+   thickness?: string;
    rotate?: string;
    top?: string;
    bottom?: string;
    left?: string;
    right?: string;
+   transformOrigin?: string;
 };
 
 const Line: React.FC<LineProps> = ({
-   color = mainLight,
+   color = mainPallete.mainLight,
    length,
-   height = "3px",
+   thickness = "2px",
    rotate,
    top,
    bottom,
    left,
    right,
+   transformOrigin = "left",
 }) => {
    return (
       <Box
          sx={{
             position: "absolute",
             backgroundColor: color,
-            height: height,
+            height: thickness,
             width: length,
             transform: `rotate(${rotate}deg)`,
-            transformOrigin: "left",
+            transformOrigin: transformOrigin,
             top: top,
             bottom: bottom,
             left: left,

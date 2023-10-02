@@ -1,1 +1,1 @@
-export type CurrentPageIndex = 0 | 1 | 2 | 3 | 4;
+export type CurrentPageIndex = 0 | 1 | 2 | 3;

@@ -11,6 +11,8 @@ const Header = () => {
             display: "flex",
             justifyContent: "flex-end",
             alignItems: "center",
+            position: "absolute",
+            right: "2rem",
             // border: "1px solid white",
          }}
       >

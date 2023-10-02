@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
-import React from "react";
-import { background, mainLight } from "../Config/Colors";
+import { mainPallete } from "../Config/Colors";
 
 const NameLogo = () => {
    return (
@@ -13,7 +12,7 @@ const NameLogo = () => {
             position: "absolute",
             top: "2rem",
             left: "2rem",
-            backgroundColor: mainLight,
+            background: "linear-gradient(-180deg, #1e9ca5 0%, #0c2e33 100%)",
             zIndex: "2",
             transform: "rotate(22.5deg)",
          }}
@@ -28,7 +27,7 @@ const NameLogo = () => {
                top: "50%",
                left: "50%",
                transform: "translate(-50%, -50%)",
-               backgroundColor: background,
+               backgroundColor: "black",
                display: "flex",
                justifyContent: "center",
                alignItems: "center",
