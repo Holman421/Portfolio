@@ -1,5 +1,7 @@
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import useIsVisible from "../Utils/CustomHooks/useIsVisible";
+import { lightFlickering } from "../Utils/HelperFunctions/animations";
 
 type Duo = {
    leftWidth: number;
@@ -14,9 +16,20 @@ type BarDuoProps = {
 };
 
 const BarDuo: React.FC<BarDuoProps> = ({ widths }) => {
+   const [ref, isIntersecting] = useIsVisible({
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
+   });
+
    return (
       <Box
+         ref={ref}
          sx={{
+            opacity: "0",
+            animation: isIntersecting
+               ? `${lightFlickering()} 1000ms ease-in-out forwards 1300ms`
+               : "",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",

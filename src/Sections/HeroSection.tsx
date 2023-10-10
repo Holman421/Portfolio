@@ -5,11 +5,15 @@ import DescriptionContainer from "../Components/HeroSection/DescriptionContainer
 import ContactMeButton from "../Components/HeroSection/ContactMeButton";
 import AbstractDescBars from "../Components/AbstractDescBars";
 import HeadingContainer from "../Components/HeroSection/HeadingContainer";
-import Header from "../Layout/Header";
 import NameLogo from "../Components/NameLogo";
-import Line from "../Components/Vectors/Line";
+import useIsVisible from "../Utils/CustomHooks/useIsVisible";
 
 const HeroSection: React.FC = () => {
+   const [ref, isIntersecting] = useIsVisible({
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
+   });
    return (
       <SectionWrapper nameForNavigation="#hero" index={0}>
          {/* <Header /> */}
@@ -17,6 +21,7 @@ const HeroSection: React.FC = () => {
          {/* <Line length="80%" top="4.7rem" left="8.5rem" thickness="4px" /> */}
 
          <Box
+            ref={ref}
             sx={{
                position: "absolute",
                top: "50%",
@@ -31,21 +36,23 @@ const HeroSection: React.FC = () => {
                      position: "absolute",
                      bottom: "-.1rem",
                      left: "0rem",
-                     width: "4rem",
+                     width: isIntersecting ? "4rem" : "0",
                      height: ".5px",
                      backgroundColor: "#CF6C29",
+                     transition: "all 300ms ease 1000ms",
                   }}
                />
                <Box
                   sx={{
                      position: "absolute",
-                     bottom: "-.1rem",
-                     left: "0rem",
-                     width: "3rem",
+                     bottom: "-2.25rem",
+                     left: "-2.1rem",
+                     width: isIntersecting ? "3rem" : "0",
                      height: ".5px",
                      backgroundColor: "#CF6C29",
-                     transform: "rotate(135deg)",
+                     transform: "rotate(-45deg)",
                      transformOrigin: "left",
+                     transition: "all 300ms ease 700ms",
                   }}
                />
             </Box>
@@ -57,6 +64,9 @@ const HeroSection: React.FC = () => {
                      bottom: "-.1rem",
                      left: "0rem",
                      width: "4rem",
+                     transform: isIntersecting ? "scaleX(1)" : "scaleX(0)",
+                     transformOrigin: "right",
+                     transition: "transform 300ms ease 1000ms",
                      height: ".5px",
                      backgroundColor: "#CF6C29",
                   }}
@@ -64,12 +74,13 @@ const HeroSection: React.FC = () => {
                <Box
                   sx={{
                      position: "absolute",
-                     bottom: "-.1rem",
-                     right: "0rem",
-                     width: "5rem",
+                     bottom: "3.4rem",
+                     right: "-3.5rem",
+                     width: isIntersecting ? "5rem" : "0",
+                     transition: "all 300ms ease 700ms",
                      height: ".5px",
                      backgroundColor: "#CF6C29",
-                     transform: "rotate(135deg)",
+                     transform: "rotate(-45deg)",
                      transformOrigin: "right",
                   }}
                />

@@ -1,14 +1,13 @@
 import { OrbitControls, useGLTF } from "@react-three/drei";
-import { Canvas, useLoader } from "@react-three/fiber";
-import React, { useRef, useState, Suspense } from "react";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
+import { Canvas } from "@react-three/fiber";
+import { useRef, Suspense } from "react";
 
 const AvatarModel = () => {
    const controls = useRef();
-   const [model, setModel] = useState();
+   //  const [model, setModel] = useState();
 
    const avatar = useGLTF("./avatar.gltf");
-   const texture = useLoader(TextureLoader, "./example.png");
+   //  const texture = useLoader(TextureLoader, "./example.png");
 
    if (!avatar) return <div>Loading...</div>;
 

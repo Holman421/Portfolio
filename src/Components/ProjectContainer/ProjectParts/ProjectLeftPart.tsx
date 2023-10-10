@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
+import { breakpointLower800px } from "../../../Utils/HelperFunctions/breakpoints";
 import { createClipPath } from "../../../Utils/HelperFunctions/createClipPath";
 import GlossElement from "../../GlossElement";
 import Shadows from "../../Shadows/Shadows";
@@ -39,11 +40,12 @@ const ProjectLeftPart: React.FC<ProjectLeftPartProps> = ({
    );
 
    return (
-      <Box sx={{ position: "relative", display: "inline-block" }}>
+      <Box sx={{ position: "relative" }}>
          <Box
             sx={{
                width: "17rem",
                height: "10rem",
+               ...breakpointLower800px({ width: "16rem", height: "8rem" }),
                backgroundColor: "rgba(41, 196, 206)",
                clipPath: clipPathOutside,
                position: "relative",
@@ -87,7 +89,7 @@ const ProjectLeftPart: React.FC<ProjectLeftPartProps> = ({
          <Box
             sx={{
                position: "absolute",
-               zIndex: "60",
+               zIndex: "19",
                top: "-1.6rem",
                right: "-2.8rem",
             }}

@@ -1,12 +1,9 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
-import { StoreType } from "../../Redux/store/store";
 import { createClipPath } from "../../Utils/HelperFunctions/createClipPath";
-import selectAppropriateText from "../../Utils/CustomHooks/useSelectAppropriateText";
 import GlossElement from "../GlossElement";
 import Shadows from "../Shadows/Shadows";
 import useSelectAppropriateText from "../../Utils/CustomHooks/useSelectAppropriateText";
+import useIsVisible from "../../Utils/CustomHooks/useIsVisible";
 
 const HeadingContainer = () => {
    const { clipPathOutside, clipPathInside } = createClipPath<11>(
@@ -38,15 +35,35 @@ const HeadingContainer = () => {
       ]
    );
 
-
    const greetText = useSelectAppropriateText(
       "Hey, my name is",
       "Ahoj, jmenuji se"
    );
 
+   const font = useSelectAppropriateText(
+      "'Orbitron', sans-serif",
+      "'Exo 2', sans-serif"
+   );
+
+   const fontSize = useSelectAppropriateText("1rem", "1.2rem");
+
+   const [ref, isIntersecting] = useIsVisible({
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
+   });
 
    return (
-      <Box sx={{ position: "relative", display: "inline-block" }}>
+      <Box
+         ref={ref}
+         sx={{
+            position: "relative",
+            display: "inline-block",
+            transform: isIntersecting ? "translateX()" : "translateX(-4rem)",
+            opacity: isIntersecting ? "1" : "0",
+            transition: "all 600ms ease-in",
+         }}
+      >
          <Box
             sx={{
                width: "22rem",
@@ -56,6 +73,7 @@ const HeadingContainer = () => {
                position: "absolute",
                left: "-9.3rem",
                top: "-10.5rem",
+               transition: "all 400ms ease",
                "&::before": {
                   content: '""',
                   position: "absolute",
@@ -73,11 +91,11 @@ const HeadingContainer = () => {
             <Typography
                sx={{
                   position: "absolute",
-                  fontSize: "1rem",
+                  fontSize: fontSize,
                   zIndex: "30",
                   left: "2rem",
                   top: "2rem",
-                  fontFamily: "'Open Sans', sans-serif",
+                  fontFamily: font,
                }}
             >
                {greetText}

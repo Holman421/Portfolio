@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
-import { useDispatch } from "react-redux";
+import useIsVisible from "../../Utils/CustomHooks/useIsVisible";
 import useSelectAppropriateText from "../../Utils/CustomHooks/useSelectAppropriateText";
 import { createClipPath } from "../../Utils/HelperFunctions/createClipPath";
 import GlossElement from "../GlossElement";
@@ -32,19 +31,37 @@ const DescriptionContainer = () => {
       ]
    );
 
+   const [ref, isIntersecting] = useIsVisible({
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
+   });
+
    const descriptionText = useSelectAppropriateText(
       "I am a front-end developer specializing in React.js",
       "Jsem front-end vývojář specializující se na React.js"
    );
 
+   const font = useSelectAppropriateText(
+      "'Orbitron', sans-serif",
+      "'Exo 2', sans-serif"
+   );
+
+   const fontSize = useSelectAppropriateText("1rem", "1.2rem");
+
+   const marginTop = useSelectAppropriateText("1.3rem", "1rem");
+
    return (
       <Box
+         ref={ref}
          sx={{
             position: "relative",
             display: "block",
-            // width: "22rem",
             width: "20rem",
             aspectRatio: "1/1",
+            transform: isIntersecting ? "translateX()" : "translateX(4rem)",
+            opacity: isIntersecting ? "1" : "0",
+            transition: "all 600ms ease-in",
          }}
       >
          <Box
@@ -84,11 +101,13 @@ const DescriptionContainer = () => {
                sx={{
                   position: "relative",
                   marginLeft: "2.5rem",
-                  marginTop: "0.9rem",
-                  fontSize: "1.2rem",
+                  marginTop: marginTop,
+                  fontSize: fontSize,
                   width: "16rem",
                   zIndex: "30",
-                  fontFamily: "'Open Sans', sans-serif",
+                  // fontFamily: "'Open Sans', sans-serif",
+                  fontFamily: font,
+                  fontWeight: "300",
                }}
             >
                {descriptionText}

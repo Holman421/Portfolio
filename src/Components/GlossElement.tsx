@@ -20,7 +20,7 @@ const GlossElement = () => {
             <path
                d="M0.0634766 0H230.063V35.6827H0.0634766V0Z"
                fill="url(#paint0_linear_754_3756)"
-               fill-opacity="0.5"
+               fillOpacity="0.5"
             />
          </mask>
          <g mask="url(#mask0_754_3756)">
@@ -41,9 +41,9 @@ const GlossElement = () => {
                y2="30.5852"
                gradientUnits="userSpaceOnUse"
             >
-               <stop stop-color="white" stop-opacity="0" />
-               <stop offset="0.5" stop-color="white" />
-               <stop offset="1" stop-color="white" stop-opacity="0" />
+               <stop stopColor="white" stopOpacity="0" />
+               <stop offset="0.5" stopColor="white" />
+               <stop offset="1" stopColor="white" stopOpacity="0" />
             </linearGradient>
             <linearGradient
                id="paint1_linear_754_3756"
@@ -53,10 +53,10 @@ const GlossElement = () => {
                y2="-9.14724"
                gradientUnits="userSpaceOnUse"
             >
-               <stop stop-color="#D9D9D9" stop-opacity="0" />
-               <stop offset="0.416667" stop-color="white" />
-               <stop offset="0.598958" stop-color="#F3F3F3" />
-               <stop offset="1" stop-color="#D9D9D9" stop-opacity="0" />
+               <stop stopColor="#D9D9D9" stopOpacity="0" />
+               <stop offset="0.416667" stopColor="white" />
+               <stop offset="0.598958" stopColor="#F3F3F3" />
+               <stop offset="1" stopColor="#D9D9D9" stopOpacity="0" />
             </linearGradient>
          </defs>
       </svg>

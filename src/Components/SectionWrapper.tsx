@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import React, { useRef } from "react";
-import { Element } from "react-scroll";
+import React, { useEffect } from "react";
 import { CurrentPageIndex } from "../Types/Types";
+import useIsVisible from "../Utils/CustomHooks/useIsVisible";
 import useUpdateCurrentPage from "../Utils/CustomHooks/useUpdateCurrentPage";
 
 type SectionWrapperProps = {
@@ -9,36 +9,52 @@ type SectionWrapperProps = {
    index: CurrentPageIndex;
    sx?: any;
    children: React.ReactNode;
+   useSnap?: boolean;
 };
 
 const SectionWrapper: React.FC<SectionWrapperProps> = ({
-   nameForNavigation,
    index,
    sx,
    children,
+   useSnap = false,
 }) => {
-   const ref = useRef<HTMLDivElement>(null);
+   const [ref, isIntersecting] = useIsVisible({
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.3,
+   });
+
+   useEffect(() => {
+      if (!useSnap) return;
+      if (isIntersecting) {
+         const targetY =
+            ref.current.getBoundingClientRect().top + window.pageYOffset;
+         window.scroll({
+            top: targetY,
+            behavior: "smooth",
+         });
+      }
+   }, [isIntersecting, ref, useSnap]);
 
    useUpdateCurrentPage(ref, index);
 
    return (
-      <Element name={nameForNavigation}>
-         <Box
-            ref={ref}
-            sx={{
-               ...sx,
-               width: "100%",
-               height: "100vh",
-               minHeight: "30rem",
-              //  border: "1px solid white",
-               scrollSnapAlign: "start",
-               scrollSnapStop: "always",
-               position: "relative",
-            }}
-         >
-            {children}
-         </Box>
-      </Element>
+      // <Element name={nameForNavigation}>
+      <Box
+         ref={ref}
+         sx={{
+            ...sx,
+            width: "100%",
+            minHeight: "100vh",
+            //  minHeight: "30rem",
+            //  scrollSnapAlign: "start",
+            //  scrollSnapStop: "always",
+            position: "relative",
+         }}
+      >
+         {children}
+      </Box>
+      // </Element>
    );
 };
 

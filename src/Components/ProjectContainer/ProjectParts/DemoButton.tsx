@@ -1,25 +1,16 @@
-import { Box, keyframes } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
+import useSelectAppropriateText from "../../../Utils/CustomHooks/useSelectAppropriateText";
+import { breakpointLower800px } from "../../../Utils/HelperFunctions/breakpoints";
 import { createClipPath } from "../../../Utils/HelperFunctions/createClipPath";
 
-type ProjectButtonsProps = {
-   variant: "demo" | "github";
+type DemoButtonProps = {
    urlDemo?: string;
-   urlGithub?: string;
    isOpen: boolean;
 };
 
-const ProjectButtons: React.FC<ProjectButtonsProps> = ({
-   variant,
-   urlDemo,
-   urlGithub,
-   isOpen,
-}) => {
-   const isDemoButon = variant === "demo";
-   const {
-      clipPathOutside: clipPathOutsideDemo,
-      clipPathInside: clipPathInsideDemo,
-   } = createClipPath<5>(
+const DemoButton: React.FC<DemoButtonProps> = ({ urlDemo, isOpen }) => {
+   const { clipPathOutside, clipPathInside } = createClipPath<5>(
       [
          { x: "0%", y: "0%" },
          { x: "100% - 1rem", y: "0%" },
@@ -37,29 +28,29 @@ const ProjectButtons: React.FC<ProjectButtonsProps> = ({
    );
 
    const {
-      clipPathOutside: clipPathOutsideGithub,
-      clipPathInside: clipPathInsideGithub,
-   } = createClipPath<6>(
+      clipPathOutside: clipPathOutsideMobile,
+      clipPathInside: clipPathInsideMobile,
+   } = createClipPath<5>(
       [
          { x: "0%", y: "0%" },
          { x: "100%", y: "0%" },
-         { x: "100%", y: "100% - 1rem" },
-         { x: "100% - 1rem", y: "100%" },
+         { x: "100%", y: "100%" },
          { x: "0% + 1rem", y: "100%" },
          { x: "0%", y: "100% - 1rem" },
       ],
       [
          { x: "+ 1px", y: "+ 1px" },
          { x: "- 1px", y: "+ 1px" },
-         { x: "- 1px", y: "" },
-         { x: "", y: "- 1px" },
-         { x: "", y: "- 1px" },
-         { x: "+ 1px", y: "" },
+         { x: "- 1px", y: "- 1px" },
+         { x: "+ 1px", y: "- 1px" },
+         { x: "+ 1px", y: "- 1px" },
       ]
    );
 
+   const buttonText = useSelectAppropriateText("Demo", "Ukázka");
+
    const handleClick = () => {
-      window.open(isDemoButon ? urlDemo : urlGithub, "_blank");
+      window.open(urlDemo, "_blank");
    };
 
    return (
@@ -68,19 +59,17 @@ const ProjectButtons: React.FC<ProjectButtonsProps> = ({
          onClick={handleClick}
          sx={{
             position: "absolute",
-            bottom: isDemoButon ? "-1.5rem" : "-4rem",
+            bottom: "-.4rem",
             left: "1rem",
             padding: ".5rem 0rem",
-            width: "6.8rem",
+            width: "6.9rem",
             cursor: "pointer",
             border: "none",
             background: "#CF6C29",
             visibility: isOpen ? "visible" : "hidden",
             opacity: isOpen ? "1" : "0",
-            transition: isDemoButon
-               ? "visibility 500ms ease-out, opacity 500ms ease-out"
-               : "visibility 500ms ease-out 100ms, opacity 500ms ease-out 100ms",
-            clipPath: isDemoButon ? clipPathOutsideDemo : clipPathOutsideGithub,
+            transition: "visibility 500ms ease-out, opacity 500ms ease-out",
+            clipPath: clipPathOutside,
             "&:hover": { opacity: ".8" },
             "&::before": {
                content: '""',
@@ -91,10 +80,19 @@ const ProjectButtons: React.FC<ProjectButtonsProps> = ({
                top: "50%",
                left: "50%",
                transform: "translate(-50%, -50%)",
-               clipPath: isDemoButon
-                  ? clipPathInsideDemo
-                  : clipPathInsideGithub,
+               clipPath: clipPathInside,
+               "@media (max-width: 800px)": {
+                  clipPath: clipPathInsideMobile,
+                  background:
+                     "linear-gradient(180deg, #ce6c29 0%, #512b10 100%)",
+               },
             },
+            ...breakpointLower800px({
+               width: "6.35rem",
+               bottom: "-1.8rem",
+               left: "2rem",
+               clipPath: clipPathOutsideMobile,
+            }),
          }}
       >
          <Box
@@ -105,10 +103,10 @@ const ProjectButtons: React.FC<ProjectButtonsProps> = ({
                position: "relative",
             }}
          >
-            {isDemoButon ? "Demo" : "Github"}
+            {buttonText}
          </Box>
       </Box>
    );
 };
 
-export default ProjectButtons;
+export default DemoButton;

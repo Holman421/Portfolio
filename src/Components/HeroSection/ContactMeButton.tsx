@@ -1,8 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleLanguage } from "../../Redux/reducers/themeReducer";
 import { StoreType } from "../../Redux/store/store";
+import useIsVisible from "../../Utils/CustomHooks/useIsVisible";
 import useSelectAppropriateText from "../../Utils/CustomHooks/useSelectAppropriateText";
 import { createClipPath } from "../../Utils/HelperFunctions/createClipPath";
 
@@ -24,9 +25,20 @@ const ContactMeButton = () => {
       ]
    );
 
+   const [ref, isIntersecting] = useIsVisible({
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
+   });
+
    const descriptionText = useSelectAppropriateText(
-      "Contact me",
+      "Let's connect",
       "Kontaktuj mě"
+   );
+
+   const font = useSelectAppropriateText(
+      "'Orbitron', sans-serif",
+      "'Exo 2', sans-serif"
    );
 
    const isDefaultLanguage = useSelector(
@@ -37,14 +49,19 @@ const ContactMeButton = () => {
 
    return (
       <Box
+         ref={ref}
          component="button"
          onClick={() => {
             dispatch(toggleLanguage(!isDefaultLanguage));
-            console.log(isDefaultLanguage);
          }}
          sx={{
+            transform: isIntersecting ? "translateY()" : "translateY(4rem)",
+            opacity: isIntersecting ? "1" : "0",
+            transition: "all 600ms ease-in",
             position: "absolute",
-            padding: "1rem 3rem",
+            padding: "1rem 2.5rem",
+            width: "13rem",
+            height: "3.5rem",
             top: "7.3rem",
             right: "10.7rem",
             background: "#CF6C29",
@@ -69,7 +86,14 @@ const ContactMeButton = () => {
             },
          }}
       >
-         <Box sx={{ zIndex: "50", fontSize: "1.25rem", whiteSpace: "nowrap" }}>
+         <Box
+            sx={{
+               zIndex: "50",
+               fontSize: "1.25rem",
+               whiteSpace: "nowrap",
+               fontFamily: font,
+            }}
+         >
             {descriptionText}
          </Box>
       </Box>

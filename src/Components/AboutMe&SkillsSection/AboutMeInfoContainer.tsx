@@ -9,6 +9,9 @@ type AboutMeInfoContainerProps = {
    left?: string;
    right?: string;
    bottom?: string;
+   angle?: string;
+   opacity?: string;
+   transition?: string;
 };
 
 const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
@@ -18,6 +21,9 @@ const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
    left,
    right,
    bottom,
+   angle,
+   opacity = "1",
+   transition,
 }) => {
    const titleRef = useRef<HTMLDivElement>(null);
    const [divWidth, setDivWidth] = useState<number | null>(null);
@@ -92,11 +98,15 @@ const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
    return (
       <Box
          sx={{
+            opacity: opacity,
+            transition: transition,
             position: "absolute",
+            maxWidth: "10rem",
             top: top,
             left: left,
             right: right,
             bottom: bottom,
+            transform: `rotate(${angle})`,
          }}
       >
          <Box

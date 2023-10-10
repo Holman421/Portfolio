@@ -11,6 +11,7 @@ const useUpdateCurrentPage = (
    const observer = useRef(null);
 
    useEffect(() => {
+      const node = ref.current;
       observer.current = new IntersectionObserver(
          ([entry]) => {
             if (entry.isIntersecting) {
@@ -20,13 +21,13 @@ const useUpdateCurrentPage = (
          { threshold: 0.5 }
       );
 
-      if (ref.current) {
-         observer.current.observe(ref.current);
+      if (node) {
+         observer.current.observe(node);
       }
 
       return () => {
-         if (ref.current) {
-            observer.current.unobserve(ref.current);
+         if (node) {
+            observer.current.unobserve(node);
          }
       };
    }, [dispatch, index, ref]);

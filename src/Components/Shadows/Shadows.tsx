@@ -70,8 +70,9 @@ const Shadows: React.FC<ShadowsProps> = ({
             zIndex: zIndex,
          }}
       >
-         {shadowVariantHandler().map((shadow) => (
+         {shadowVariantHandler().map((shadow, index) => (
             <Box
+               key={index}
                sx={{
                   height: height,
                   width: shadow.width,

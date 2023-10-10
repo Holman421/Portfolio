@@ -1,41 +1,41 @@
 import { Box } from "@mui/material";
-import React from "react";
-import { mainPallete } from "../../Config/Colors";
 
 type CircleProps = {
-   color?: string;
-   size?: string;
    top?: string;
-   bottom?: string;
    left?: string;
-   right?: string;
+   aboutName?: string;
+   skillsName?: string;
+   children?: React.ReactNode;
+   opacity?: string;
+   transition?: string;
 };
 
 const Circle: React.FC<CircleProps> = ({
-   color = mainPallete.mainLight,
-   size = "2rem",
    top,
-   bottom,
    left,
-   right,
+   children,
+   opacity = "1",
+   transition,
 }) => {
+   const sizeBig = "1.75rem";
+   const sizeSmall = "1.25rem";
    return (
       <Box
          sx={{
             position: "absolute",
-            zIndex: "10",
-            backgroundColor: "black",
             borderRadius: "50%",
-            border: "3px solid " + color,
+            border: "2px solid #ce6c29",
+            width: { xs: sizeSmall, md: sizeBig },
+            height: { xs: sizeSmall, md: sizeBig },
+            top: "0",
+            opacity: opacity,
             transform: "translate(-50%, -50%)",
-            width: size,
-            height: size,
-            top: top,
-            bottom: bottom,
-            left: left,
-            right: right,
+            right: { xs: "-1.75rem", md: "-2.5rem" },
+            transition: `width 300ms ease, height 300ms ease${transition}`,
          }}
-      />
+      >
+         {children}
+      </Box>
    );
 };
 

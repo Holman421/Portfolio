@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { mainPallete } from "../Config/Colors";
 
 const NameLogo = () => {
    return (
