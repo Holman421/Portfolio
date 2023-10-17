@@ -1,12 +1,19 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { StoreType } from "../../Redux/store/store";
+import useGetDivWidth from "../../Utils/CustomHooks/useGetDivWidth";
+import useScreenSize from "../../Utils/CustomHooks/useScreenSize";
+import { breakpointUp1300px } from "../../Utils/HelperFunctions/breakpoints";
 import { createClipPath } from "../../Utils/HelperFunctions/createClipPath";
 
 type AboutMeInfoContainerProps = {
    title: string;
    description: string;
    top?: string;
+   topBig?: string;
    left?: string;
+   leftBig?: string;
    right?: string;
    bottom?: string;
    angle?: string;
@@ -18,15 +25,18 @@ const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
    title,
    description,
    top,
+   topBig,
    left,
+   leftBig,
    right,
    bottom,
    angle,
    opacity = "1",
    transition,
 }) => {
-   const titleRef = useRef<HTMLDivElement>(null);
-   const [divWidth, setDivWidth] = useState<number | null>(null);
+   const { ref, width } = useGetDivWidth();
+
+   const isAbove1300px = useScreenSize();
 
    const {
       clipPathOutside: titleClipPathOutside,
@@ -53,9 +63,12 @@ const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
       clipPathInside: descriptionClipPathInside,
    } = createClipPath<11>(
       [
-         { x: "0%", y: "0% + 2.2rem" },
-         { x: `0% + ${divWidth - 30}px`, y: "0% + 2.2rem" },
-         { x: `0% + ${divWidth - 30}px + 2.2rem`, y: "0%" },
+         { x: "0%", y: `0% + ${isAbove1300px ? "2.7rem" : "2.2rem"}` },
+         {
+            x: `0% + ${width - 30}px`,
+            y: `0% + ${isAbove1300px ? "2.7rem" : "2.2rem"}`,
+         },
+         { x: `0% + ${width - 30}px + 2.2rem`, y: "0%" },
          { x: "100% - .75rem", y: "0%" },
          { x: "100%", y: "0% + .75rem" },
          { x: "100%", y: "100% - 1.5rem" },
@@ -80,42 +93,41 @@ const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
       ]
    );
 
-   useEffect(() => {
-      // this calculates the width of titleDiv so that
-      // descriptionDiv can make space for it, it also updates
-      // if somebody in UI edits the title
-      const resizeObserver = new ResizeObserver((entries) => {
-         setDivWidth(entries[0].target.clientWidth);
-      });
-      if (titleRef.current) {
-         resizeObserver.observe(titleRef.current);
-      }
-      return () => {
-         resizeObserver.disconnect();
-      };
-   }, []);
+   const { showAboutMeContainers, applyFirstAppearTransition } = useSelector(
+      (state: StoreType) => state.avatarState
+   );
 
    return (
       <Box
          sx={{
-            opacity: opacity,
-            transition: transition,
+            opacity: showAboutMeContainers ? opacity : "0",
+            transition: applyFirstAppearTransition
+               ? transition
+               : "all 500ms ease",
             position: "absolute",
             maxWidth: "10rem",
             top: top,
             left: left,
             right: right,
             bottom: bottom,
+            ...breakpointUp1300px({
+               maxWidth: "15rem",
+               top: topBig,
+               left: leftBig,
+            }),
             transform: `rotate(${angle})`,
          }}
       >
          <Box
-            ref={titleRef}
+            ref={ref}
             sx={{
                height: "2rem",
                clipPath: titleClipPathOutside,
                backgroundColor: "rgba(41, 196, 206)",
                position: "absolute",
+               ...breakpointUp1300px({
+                  height: "2.5rem",
+               }),
                "&::before": {
                   content: '""',
                   position: "absolute",
@@ -138,6 +150,11 @@ const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
                   left: ".75rem",
                   fontSize: ".8rem",
                   paddingRight: "2.75rem",
+                  transition: "all 500ms ease",
+                  ...breakpointUp1300px({
+                     fontSize: "1.2rem",
+                     //  padding: "2.8rem 1rem 1.75rem 1rem",
+                  }),
                }}
             >
                {title}
@@ -146,12 +163,13 @@ const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
 
          <Box
             sx={{
-               minWidth: "10rem",
+               minWidth: "11rem",
                maxWidth: "15rem",
                clipPath: descriptionClipPathOutside,
                backgroundColor: "rgba(41, 196, 206)",
                display: "inline-block",
                position: "relative",
+               ...breakpointUp1300px({ minWidth: "13rem", maxWidth: " 17rem" }),
                "&::before": {
                   content: '""',
                   position: "absolute",
@@ -169,10 +187,15 @@ const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
                sx={{
                   position: "relative",
                   zIndex: "30",
-                  padding: "2.5rem .75rem 1.5rem .75rem",
+                  padding: "2.6rem .75rem 1.5rem .75rem",
                   fontFamily: "'Open Sans', sans-serif",
                   fontSize: ".7rem",
                   display: "inline-block",
+                  transition: "all 500ms ease",
+                  ...breakpointUp1300px({
+                     fontSize: "1rem",
+                     padding: "3.2rem 1rem 1.75rem 1rem",
+                  }),
                }}
             >
                {description}

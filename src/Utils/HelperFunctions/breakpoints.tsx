@@ -8,9 +8,9 @@ export const breakpointLower800px = (sx: object) => {
    };
 };
 
-export const breakpointUp1200px = (sx: SxProps) => {
+export const breakpointUp1300px = (sx: SxProps) => {
    return {
-      "@media (min-width: 1200px)": {
+      "@media (min-width: 1300px)": {
          ...sx,
       },
    };

@@ -5,6 +5,7 @@ import { toggleLanguage } from "../../Redux/reducers/themeReducer";
 import { StoreType } from "../../Redux/store/store";
 import useIsVisible from "../../Utils/CustomHooks/useIsVisible";
 import useSelectAppropriateText from "../../Utils/CustomHooks/useSelectAppropriateText";
+import { breakpointUp1300px } from "../../Utils/HelperFunctions/breakpoints";
 import { createClipPath } from "../../Utils/HelperFunctions/createClipPath";
 
 const ContactMeButton = () => {
@@ -13,6 +14,26 @@ const ContactMeButton = () => {
          { x: "0%", y: "0%" },
          { x: "100% - 1rem", y: "0%" },
          { x: "100%", y: "0% + 1rem" },
+         { x: "100%", y: "100%" },
+         { x: "0%", y: "100%" },
+      ],
+      [
+         { x: "+ 1px", y: "+ 1px" },
+         { x: "- 1px", y: "+ 1px" },
+         { x: "- 1px", y: "" },
+         { x: "- 1px", y: "- 1px" },
+         { x: "+ 1px", y: "- 1px" },
+      ]
+   );
+
+   const {
+      clipPathOutside: clipPathOutsideBig,
+      clipPathInside: clipPathInsideBig,
+   } = createClipPath<5>(
+      [
+         { x: "0%", y: "0%" },
+         { x: "100% - 1.5rem", y: "0%" },
+         { x: "100%", y: "0% + 1.5rem" },
          { x: "100%", y: "100%" },
          { x: "0%", y: "100%" },
       ],
@@ -57,13 +78,13 @@ const ContactMeButton = () => {
          sx={{
             transform: isIntersecting ? "translateY()" : "translateY(4rem)",
             opacity: isIntersecting ? "1" : "0",
-            transition: "all 600ms ease-in",
+            transition: "all 600ms ease-in, top 500ms ease",
             position: "absolute",
             padding: "1rem 2.5rem",
             width: "13rem",
             height: "3.5rem",
-            top: "7.3rem",
-            right: "10.7rem",
+            top: "7.5rem",
+            right: "10.4rem",
             background: "#CF6C29",
             clipPath: clipPathOutside,
             border: "none",
@@ -71,7 +92,13 @@ const ContactMeButton = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-
+            ...breakpointUp1300px({
+               width: "15rem",
+               height: "4rem",
+               top: "12.3rem",
+               right: "16.3rem",
+               clipPath: clipPathOutsideBig,
+            }),
             "&:hover": { opacity: ".8" },
             "&::before": {
                content: '""',
@@ -83,6 +110,10 @@ const ContactMeButton = () => {
                left: "50%",
                transform: "translate(-50%, -50%)",
                clipPath: clipPathInside,
+               transition: "all 600ms ease-in",
+               ...breakpointUp1300px({
+                  clipPath: clipPathInsideBig,
+               }),
             },
          }}
       >

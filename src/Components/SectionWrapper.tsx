@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import React, { useEffect } from "react";
+import { Element } from "react-scroll";
 import { CurrentPageIndex } from "../Types/Types";
 import useIsVisible from "../Utils/CustomHooks/useIsVisible";
 import useUpdateCurrentPage from "../Utils/CustomHooks/useUpdateCurrentPage";
@@ -17,6 +18,7 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
    sx,
    children,
    useSnap = false,
+   nameForNavigation,
 }) => {
    const [ref, isIntersecting] = useIsVisible({
       root: null,
@@ -39,22 +41,22 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
    useUpdateCurrentPage(ref, index);
 
    return (
-      // <Element name={nameForNavigation}>
-      <Box
-         ref={ref}
-         sx={{
-            ...sx,
-            width: "100%",
-            minHeight: "100vh",
-            //  minHeight: "30rem",
-            //  scrollSnapAlign: "start",
-            //  scrollSnapStop: "always",
-            position: "relative",
-         }}
-      >
-         {children}
-      </Box>
-      // </Element>
+      <Element name={nameForNavigation}>
+         <Box
+            ref={ref}
+            sx={{
+               ...sx,
+               width: "100%",
+               minHeight: "100vh",
+               //  minHeight: "30rem",
+               //  scrollSnapAlign: "start",
+               //  scrollSnapStop: "always",
+               position: "relative",
+            }}
+         >
+            {children}
+         </Box>
+      </Element>
    );
 };
 

@@ -1,6 +1,10 @@
 import { Box } from "@mui/material";
 import React from "react";
-import { breakpointLower800px } from "../../../Utils/HelperFunctions/breakpoints";
+import { mainPallete } from "../../../Config/Colors";
+import {
+   breakpointLower800px,
+   breakpointUp1300px,
+} from "../../../Utils/HelperFunctions/breakpoints";
 import { createClipPath } from "../../../Utils/HelperFunctions/createClipPath";
 import GlossElement from "../../GlossElement";
 import Shadows from "../../Shadows/Shadows";
@@ -45,15 +49,16 @@ const ProjectLeftPart: React.FC<ProjectLeftPartProps> = ({
             sx={{
                width: "17rem",
                height: "10rem",
-               ...breakpointLower800px({ width: "16rem", height: "8rem" }),
-               backgroundColor: "rgba(41, 196, 206)",
+               backgroundColor: mainPallete.mainLight,
                clipPath: clipPathOutside,
                position: "relative",
+               ...breakpointLower800px({ width: "16rem", height: "8rem" }),
+               ...breakpointUp1300px({ width: "20rem", height: "12rem" }),
+               transition: "all 500ms ease",
                "&::before": {
                   content: '""',
                   position: "absolute",
-                  background:
-                     "linear-gradient(180deg, #1e9ca5 0%, #0c2e33 100%)",
+                  background: `linear-gradient(180deg, ${mainPallete.mainGradientLight} 0%, ${mainPallete.mainGradientDark} 100%)`,
                   width: "100%",
                   left: "0",
                   height: "100%",
@@ -69,6 +74,8 @@ const ProjectLeftPart: React.FC<ProjectLeftPartProps> = ({
                   bottom: "2rem",
                   fontSize: "1.5rem",
                   left: "1.25rem",
+                  transition: "all 500ms ease",
+                  ...breakpointUp1300px({ fontSize: "1.75rem" }),
                }}
             >
                {projectName}
@@ -80,11 +87,13 @@ const ProjectLeftPart: React.FC<ProjectLeftPartProps> = ({
                   left: "1.25rem",
                   zIndex: "50",
                   fontSize: "2.5rem",
+                  transition: "all 500ms ease",
+                  ...breakpointUp1300px({ fontSize: "3rem" }),
                }}
             >
                {projectNumber}
             </Box>
-            <Shadows zIndex="50" right="3rem" scale=".8" />
+            <Shadows zIndex="50" right="3rem" scale={0.8} />
          </Box>
          <Box
             sx={{

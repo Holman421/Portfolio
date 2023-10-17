@@ -8,28 +8,45 @@ type Duo = {
    rightWidth: number;
 };
 
+type typeOfAnimation = 1 | 2 | 3;
+
 type BarDuoProps = {
    widths: {
       leftWidth: number;
       rightWidth: number;
    };
+   typeOfAnimation: typeOfAnimation;
+   display: boolean;
 };
 
-const BarDuo: React.FC<BarDuoProps> = ({ widths }) => {
+const BarDuo: React.FC<BarDuoProps> = ({
+   widths,
+   typeOfAnimation,
+   display,
+}) => {
    const [ref, isIntersecting] = useIsVisible({
       root: null,
       rootMargin: "0px",
       threshold: 0.5,
    });
 
+   const animation1 = `${lightFlickering()} 1000ms ease-in-out forwards 1300ms`;
+   const animation2 = `${lightFlickering()} 500ms ease-in-out forwards 500ms`;
+   const animation3 = "";
+
+   const handleTypeOfAnimation = () => {
+      if (typeOfAnimation === 1) {
+         return animation1;
+      }
+      return typeOfAnimation === 2 ? animation2 : animation3;
+   };
+
    return (
       <Box
          ref={ref}
          sx={{
             opacity: "0",
-            animation: isIntersecting
-               ? `${lightFlickering()} 1000ms ease-in-out forwards 1300ms`
-               : "",
+            animation: isIntersecting && display ? handleTypeOfAnimation() : "",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -56,7 +73,15 @@ const BarDuo: React.FC<BarDuoProps> = ({ widths }) => {
    );
 };
 
-const AbstractDescBars: React.FC = () => {
+type AbstractDescBars = {
+   typeOfAnimation?: typeOfAnimation;
+   display?: boolean;
+};
+
+const AbstractDescBars: React.FC<AbstractDescBars> = ({
+   typeOfAnimation = 1,
+   display = true,
+}) => {
    const [duo1, setDuo1] = useState<Duo>({
       leftWidth: 25,
       rightWidth: 75,
@@ -110,9 +135,21 @@ const AbstractDescBars: React.FC = () => {
             aspectRatio: "3/1",
          }}
       >
-         <BarDuo widths={duo1} />
-         <BarDuo widths={duo2} />
-         <BarDuo widths={duo3} />
+         <BarDuo
+            display={display}
+            widths={duo1}
+            typeOfAnimation={typeOfAnimation}
+         />
+         <BarDuo
+            display={display}
+            widths={duo2}
+            typeOfAnimation={typeOfAnimation}
+         />
+         <BarDuo
+            display={display}
+            widths={duo3}
+            typeOfAnimation={typeOfAnimation}
+         />
       </Box>
    );
 };

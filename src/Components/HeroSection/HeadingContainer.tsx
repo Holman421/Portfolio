@@ -4,6 +4,9 @@ import GlossElement from "../GlossElement";
 import Shadows from "../Shadows/Shadows";
 import useSelectAppropriateText from "../../Utils/CustomHooks/useSelectAppropriateText";
 import useIsVisible from "../../Utils/CustomHooks/useIsVisible";
+import { breakpointUp1300px } from "../../Utils/HelperFunctions/breakpoints";
+import { useSelector } from "react-redux";
+import { StoreType } from "../../Redux/store/store";
 
 const HeadingContainer = () => {
    const { clipPathOutside, clipPathInside } = createClipPath<11>(
@@ -45,7 +48,9 @@ const HeadingContainer = () => {
       "'Exo 2', sans-serif"
    );
 
-   const fontSize = useSelectAppropriateText("1rem", "1.2rem");
+   const { isDefaultLanguage } = useSelector(
+      (state: StoreType) => state.themeState
+   );
 
    const [ref, isIntersecting] = useIsVisible({
       root: null,
@@ -67,13 +72,16 @@ const HeadingContainer = () => {
          <Box
             sx={{
                width: "22rem",
-               height: "12rem",
+               aspectRatio: "22/12",
                clipPath: clipPathOutside,
                backgroundColor: "rgba(41, 196, 206)",
                position: "absolute",
                left: "-9.3rem",
                top: "-10.5rem",
-               transition: "all 400ms ease",
+               transition: "all 600ms ease",
+               ...breakpointUp1300px({
+                  width: "28rem",
+               }),
                "&::before": {
                   content: '""',
                   position: "absolute",
@@ -86,16 +94,20 @@ const HeadingContainer = () => {
                },
             }}
          >
-            <Shadows zIndex="20" left="8rem" scale="1.4" />
+            <Shadows zIndex="20" left="8rem" scale={1.4} />
 
             <Typography
                sx={{
                   position: "absolute",
-                  fontSize: fontSize,
+                  fontSize: isDefaultLanguage ? "1rem" : "1.2rem",
                   zIndex: "30",
                   left: "2rem",
-                  top: "2rem",
+                  top: "20%",
                   fontFamily: font,
+                  transition: "all 600ms ease",
+                  ...breakpointUp1300px({
+                     fontSize: isDefaultLanguage ? "1.3rem" : "1.5rem",
+                  }),
                }}
             >
                {greetText}
@@ -106,10 +118,14 @@ const HeadingContainer = () => {
                   fontSize: "2.5rem",
                   zIndex: "30",
                   fontFamily: "Orbitron",
-                  top: "50%",
+                  top: "55%",
                   left: "2rem",
                   whiteSpace: "nowrap",
                   transform: "translateY(-50%)",
+                  transition: "all 600ms ease",
+                  ...breakpointUp1300px({
+                     fontSize: "3.5rem",
+                  }),
                }}
             >
                Ales Holman

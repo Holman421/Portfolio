@@ -1,6 +1,9 @@
 import { Box, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { StoreType } from "../../Redux/store/store";
 import useIsVisible from "../../Utils/CustomHooks/useIsVisible";
 import useSelectAppropriateText from "../../Utils/CustomHooks/useSelectAppropriateText";
+import { breakpointUp1300px } from "../../Utils/HelperFunctions/breakpoints";
 import { createClipPath } from "../../Utils/HelperFunctions/createClipPath";
 import GlossElement from "../GlossElement";
 import Shadows from "../Shadows/Shadows";
@@ -10,11 +13,39 @@ const DescriptionContainer = () => {
       [
          { x: "100% - 1rem", y: "0%" },
          { x: "100%", y: "0% + 1rem" },
-         { x: "100%", y: "32.5%" },
-         { x: "100% - 1rem", y: "35%" },
-         { x: "50%", y: "35%" },
-         { x: "42.5%", y: "27.5%" },
-         { x: "0%", y: "27.5%" },
+         { x: "100%", y: "100% - 1rem" },
+         { x: "100% - 1rem", y: "100%" },
+         { x: "0% + 10rem", y: "100%" },
+         { x: "0% + 9rem", y: "100% - 1rem" },
+         { x: "0%", y: "100% - 1rem" },
+         { x: "0%", y: "0% + 2rem" },
+         { x: "0% + 2rem", y: "0%" },
+      ],
+      [
+         { x: "", y: "+ 1px" },
+         { x: "- 1px", y: "" },
+         { x: "- 1px", y: "- 1px" },
+         { x: "", y: "- 1px" },
+         { x: "", y: "- 1px" },
+         { x: "", y: "- 1px" },
+         { x: "+ 1px", y: "- 1px" },
+         { x: "+ 1px", y: "" },
+         { x: "", y: "+ 1px" },
+      ]
+   );
+
+   const {
+      clipPathOutside: clipPathOutsideBig,
+      clipPathInside: clipPathInsideBig,
+   } = createClipPath<9>(
+      [
+         { x: "100% - 1rem", y: "0%" },
+         { x: "100%", y: "0% + 1rem" },
+         { x: "100%", y: "100% - 1rem" },
+         { x: "100% - 1rem", y: "100%" },
+         { x: "0% + 10rem", y: "100%" },
+         { x: "0% + 8.5rem", y: "100% - 1.5rem" },
+         { x: "0%", y: "100% - 1.5rem" },
          { x: "0%", y: "0% + 2rem" },
          { x: "0% + 2rem", y: "0%" },
       ],
@@ -47,9 +78,9 @@ const DescriptionContainer = () => {
       "'Exo 2', sans-serif"
    );
 
-   const fontSize = useSelectAppropriateText("1rem", "1.2rem");
-
-   const marginTop = useSelectAppropriateText("1.3rem", "1rem");
+   const { isDefaultLanguage } = useSelector(
+      (state: StoreType) => state.themeState
+   );
 
    return (
       <Box
@@ -58,10 +89,17 @@ const DescriptionContainer = () => {
             position: "relative",
             display: "block",
             width: "20rem",
-            aspectRatio: "1/1",
+            aspectRatio: "100/33",
             transform: isIntersecting ? "translateX()" : "translateX(4rem)",
             opacity: isIntersecting ? "1" : "0",
-            transition: "all 600ms ease-in",
+            transition: "all 600ms ease-in, top 400ms ease",
+            top: "0rem",
+            left: "0.1rem",
+            ...breakpointUp1300px({
+               width: "26rem",
+               top: "3.3rem",
+               left: "0.1rem",
+            }),
          }}
       >
          <Box
@@ -75,7 +113,7 @@ const DescriptionContainer = () => {
             <GlossElement></GlossElement>
          </Box>
 
-         <Shadows zIndex="20" right="2rem" scale=".8" />
+         <Shadows zIndex="20" right="2rem" scale={0.8} />
 
          <Box
             sx={{
@@ -85,6 +123,10 @@ const DescriptionContainer = () => {
                width: "100%",
                height: "100%",
                zIndex: "10",
+               transition: "all 600ms ease",
+               ...breakpointUp1300px({
+                  clipPath: clipPathOutsideBig,
+               }),
                "&::before": {
                   content: '""',
                   position: "absolute",
@@ -94,6 +136,10 @@ const DescriptionContainer = () => {
                   height: "100%",
                   clipPath: clipPathInside,
                   zIndex: "20",
+                  transition: "all 600ms ease",
+                  ...breakpointUp1300px({
+                     clipPath: clipPathInsideBig,
+                  }),
                },
             }}
          >
@@ -101,13 +147,19 @@ const DescriptionContainer = () => {
                sx={{
                   position: "relative",
                   marginLeft: "2.5rem",
-                  marginTop: marginTop,
-                  fontSize: fontSize,
+                  marginTop: isDefaultLanguage ? "1.3rem" : "1rem",
+                  fontSize: isDefaultLanguage ? "1rem" : "1.2rem",
                   width: "16rem",
                   zIndex: "30",
                   // fontFamily: "'Open Sans', sans-serif",
                   fontFamily: font,
                   fontWeight: "300",
+                  transition: "all 600ms ease",
+                  ...breakpointUp1300px({
+                     width: "20rem",
+                     marginTop: isDefaultLanguage ? "1.5rem" : "1.1rem",
+                     fontSize: isDefaultLanguage ? "1.3rem" : "1.5rem",
+                  }),
                }}
             >
                {descriptionText}

@@ -17,6 +17,8 @@ const ProjectSection: React.FC = () => {
             alignItems: "center",
             // "@media (max-width: 750px)": {
             // },
+            background:
+               "radial-gradient(49.64% 42.91% at 36.89% 52%, rgba(60, 149, 220, 0.23) 0%, rgba(0, 0, 0, 0.00) 100%)",
          }}
       >
          <Box

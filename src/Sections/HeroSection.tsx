@@ -7,6 +7,7 @@ import AbstractDescBars from "../Components/AbstractDescBars";
 import HeadingContainer from "../Components/HeroSection/HeadingContainer";
 import NameLogo from "../Components/NameLogo";
 import useIsVisible from "../Utils/CustomHooks/useIsVisible";
+import { breakpointUp1300px } from "../Utils/HelperFunctions/breakpoints";
 
 const HeroSection: React.FC = () => {
    const [ref, isIntersecting] = useIsVisible({
@@ -14,22 +15,48 @@ const HeroSection: React.FC = () => {
       rootMargin: "0px",
       threshold: 0.5,
    });
+
    return (
-      <SectionWrapper nameForNavigation="#hero" index={0}>
-         {/* <Header /> */}
+      <SectionWrapper
+         nameForNavigation="#hero"
+         index={0}
+         sx={{
+            background:
+               "radial-gradient(68.7% 37.25% at 74.93% 53.56%, rgba(207, 108, 41, 0.24) 0%, rgba(0, 0, 0, 0.00) 100%)",
+         }}
+         // background:
+         //  "radial-gradient(68.23% 33.26% at 86.15% 84.28%, rgba(207, 108, 41, 0.35) 0%, rgba(0, 0, 0, 0.00) 100%)",
+      >
          <NameLogo />
-         {/* <Line length="80%" top="4.7rem" left="8.5rem" thickness="4px" /> */}
+         {/* <Navbar />
+         <Line
+            color="#29C4CE"
+            length="80%"
+            top="4.7rem"
+            left="8.5rem"
+            thickness="4px"
+         /> */}
 
          <Box
             ref={ref}
             sx={{
                position: "absolute",
                top: "50%",
-               left: "calc(50% + 7rem)",
+               left: "calc(50% + 4rem)",
                transform: "translateX(-50%)",
+               transition: "all 600ms ease",
+               ...breakpointUp1300px({ left: "calc(50% + 4rem)" }),
             }}
          >
-            <Box sx={{ position: "absolute", right: "-1rem", top: "-2rem" }}>
+            <Box
+               sx={{
+                  position: "absolute",
+                  right: "-1rem",
+                  top: "-2rem",
+                  transition: "all 600ms ease",
+                  ...breakpointUp1300px({ top: "1.15rem", right: "-2rem" }),
+               }}
+            >
                <AbstractDescBars />
                <Box
                   sx={{
@@ -56,7 +83,15 @@ const HeroSection: React.FC = () => {
                   }}
                />
             </Box>
-            <Box sx={{ position: "absolute", left: "-13rem", top: "4.5rem" }}>
+            <Box
+               sx={{
+                  position: "absolute",
+                  left: "-13rem",
+                  top: "4.5rem",
+                  transition: "all 600ms ease",
+                  ...breakpointUp1300px({ top: "7.5rem", left: "-14rem" }),
+               }}
+            >
                <AbstractDescBars />
                <Box
                   sx={{

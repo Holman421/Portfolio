@@ -1,6 +1,6 @@
 import HeroSection from "./Sections/HeroSection";
 import ProjectSection from "./Sections/ProjectSection";
-import AboutMeSection from "./Sections/AboutMeSection";
+import AvatarSection from "./Sections/AvatarSection";
 import { Box } from "@mui/material";
 import ContactMeSection from "./Sections/ContactMeSection";
 import CurrentPageIndicator from "./Components/CurrentPageIndicator";
@@ -18,7 +18,7 @@ function App() {
          <CurrentPageIndicator />
          <HeroSection />
          <ProjectSection />
-         <AboutMeSection />
+         <AvatarSection />
          <ContactMeSection />
       </Box>
    );

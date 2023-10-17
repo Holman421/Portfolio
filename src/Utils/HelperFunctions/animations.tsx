@@ -16,3 +16,34 @@ export const lightFlickering = () => {
   }
 `;
 };
+
+export const avatarAnimation = () => {
+   return keyframes`
+0% {
+  opacity: 1;
+}
+60%, 64%, 68% {
+ opacity: 1;
+}
+ 62%, 66% {
+  opacity: 0.8;
+}
+100% {
+  opacity: 1;
+}
+`;
+};
+
+export const widthChange = () => {
+   return keyframes`
+0% {
+ width: 100%;
+}
+50% {
+  width: 120%;
+}
+100% {
+  width: 100%;
+}
+`;
+};

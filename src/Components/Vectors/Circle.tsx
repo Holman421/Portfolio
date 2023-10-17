@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { breakpointUp1300px } from "../../Utils/HelperFunctions/breakpoints";
 
 type CircleProps = {
    top?: string;
@@ -25,13 +26,18 @@ const Circle: React.FC<CircleProps> = ({
             position: "absolute",
             borderRadius: "50%",
             border: "2px solid #ce6c29",
-            width: { xs: sizeSmall, md: sizeBig },
-            height: { xs: sizeSmall, md: sizeBig },
+            width: sizeSmall,
+            height: sizeSmall,
             top: "0",
             opacity: opacity,
             transform: "translate(-50%, -50%)",
-            right: { xs: "-1.75rem", md: "-2.5rem" },
-            transition: `width 300ms ease, height 300ms ease${transition}`,
+            right: "-1.75rem",
+            transition: `${transition}`,
+            ...breakpointUp1300px({
+               width: sizeBig,
+               height: sizeBig,
+               right: "-2.5rem",
+            }),
          }}
       >
          {children}

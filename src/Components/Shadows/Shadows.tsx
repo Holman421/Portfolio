@@ -1,11 +1,12 @@
 import { Box } from "@mui/material";
 import React, { useState } from "react";
+import { breakpointUp1300px } from "../../Utils/HelperFunctions/breakpoints";
 
 type ShadowsProps = {
    top?: string;
    left?: string;
    right?: string;
-   scale?: string;
+   scale?: number;
    zIndex?: string;
 };
 
@@ -13,7 +14,7 @@ const Shadows: React.FC<ShadowsProps> = ({
    top,
    left,
    right,
-   scale = "1",
+   scale = 1,
    zIndex,
 }) => {
    const [variant] = useState(Math.floor(Math.random() * 4) + 1);
@@ -68,6 +69,10 @@ const Shadows: React.FC<ShadowsProps> = ({
             transform: `scale(${scale}) skew(-23deg)`,
             transformOrigin: "top",
             zIndex: zIndex,
+            transition: "all 500ms ease",
+            ...breakpointUp1300px({
+               transform: `scale(${scale * 1.2}) skew(-23deg)`,
+            }),
          }}
       >
          {shadowVariantHandler().map((shadow, index) => (

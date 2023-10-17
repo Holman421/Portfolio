@@ -1,6 +1,8 @@
 import { Box } from "@mui/material";
 import React from "react";
-import { mainPallete } from "../../Config/Colors";
+import { useSelector } from "react-redux";
+import { StoreType } from "../../Redux/store/store";
+import { breakpointUp1300px } from "../../Utils/HelperFunctions/breakpoints";
 
 type LineProps = {
    name?: string;
@@ -15,6 +17,8 @@ type LineProps = {
    transformOrigin?: string;
    children?: React.ReactNode;
    transition?: string;
+   topBig?: string;
+   leftBig?: string;
 };
 
 const Line: React.FC<LineProps> = ({
@@ -29,7 +33,13 @@ const Line: React.FC<LineProps> = ({
    transformOrigin = "left",
    transition,
    children,
+   topBig,
+   leftBig,
 }) => {
+   const { areAvatarTransitionsOn, applyFirstAppearTransition } = useSelector(
+      (state: StoreType) => state.avatarState
+   );
+
    return (
       <Box
          sx={{
@@ -40,10 +50,18 @@ const Line: React.FC<LineProps> = ({
             transform: `rotate(${angle})`,
             transformOrigin: transformOrigin,
             top: top,
-            bottom: bottom,
             left: left,
+            bottom: bottom,
             right: right,
-            transition: `top 300ms ease, left 300ms ease${transition}`,
+            transition: areAvatarTransitionsOn
+               ? applyFirstAppearTransition
+                  ? transition
+                  : "all 500ms ease"
+               : "",
+            ...breakpointUp1300px({
+               top: topBig,
+               left: leftBig,
+            }),
          }}
       >
          {children}
