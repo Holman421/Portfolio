@@ -75,7 +75,7 @@ const AvatarContainer: React.FC<AvatarContainerProps> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginTop: "3rem",
+            marginTop: "2rem",
          }}
       >
          <Box

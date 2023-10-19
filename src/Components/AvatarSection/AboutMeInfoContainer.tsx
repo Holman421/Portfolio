@@ -93,9 +93,8 @@ const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
       ]
    );
 
-   const { showAboutMeContainers, applyFirstAppearTransition } = useSelector(
-      (state: StoreType) => state.avatarState
-   );
+   const { showAboutMeContainers, applyFirstAppearTransition, selectedMode } =
+      useSelector((state: StoreType) => state.avatarState);
 
    return (
       <Box
@@ -103,7 +102,9 @@ const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
             opacity: showAboutMeContainers ? opacity : "0",
             transition: applyFirstAppearTransition
                ? transition
-               : "all 500ms ease",
+               : selectedMode === "aboutMe"
+               ? "all 1000ms ease-out"
+               : "all 500ms ease-out",
             position: "absolute",
             maxWidth: "10rem",
             top: top,

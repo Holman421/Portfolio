@@ -9,19 +9,25 @@ import { breakpointUp1300px } from "../../Utils/HelperFunctions/breakpoints";
 import { createClipPath } from "../../Utils/HelperFunctions/createClipPath";
 
 const ContactMeButton = () => {
-   const { clipPathOutside, clipPathInside } = createClipPath<5>(
+   const { clipPathOutside, clipPathInside } = createClipPath<8>(
       [
-         { x: "0%", y: "0%" },
+         { x: "0%", y: "0% + .5rem" },
+         { x: "0% + .5rem", y: "0%" },
          { x: "100% - 1rem", y: "0%" },
          { x: "100%", y: "0% + 1rem" },
-         { x: "100%", y: "100%" },
-         { x: "0%", y: "100%" },
+         { x: "100%", y: "100% - .5rem" },
+         { x: "100% - .5rem", y: "100%" },
+         { x: "0% + .5rem", y: "100%" },
+         { x: "0%", y: "100% - .5rem" },
       ],
       [
+         { x: "+ 1px", y: "+ 1px" },
          { x: "+ 1px", y: "+ 1px" },
          { x: "- 1px", y: "+ 1px" },
          { x: "- 1px", y: "" },
          { x: "- 1px", y: "- 1px" },
+         { x: "- 1px", y: "- 1px" },
+         { x: "+ 1px", y: "- 1px" },
          { x: "+ 1px", y: "- 1px" },
       ]
    );

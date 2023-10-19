@@ -104,7 +104,7 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
       document.body.removeChild(link);
    };
 
-   const { showSkillsContainers } = useSelector(
+   const { showSkillsContainers, selectedMode } = useSelector(
       (state: StoreType) => state.avatarState
    );
 
@@ -113,7 +113,10 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
          sx={{
             opacity: showSkillsContainers ? opacity : "0",
             visibility: showSkillsContainers ? "visible" : "hidden",
-            transition: "all 500ms ease",
+            transition:
+               selectedMode === "skills"
+                  ? "all 1000ms ease-out"
+                  : "all 500ms ease-out",
             position: "absolute",
             maxWidth: "10rem",
             top: top,

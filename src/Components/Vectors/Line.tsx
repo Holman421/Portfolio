@@ -19,6 +19,7 @@ type LineProps = {
    transition?: string;
    topBig?: string;
    leftBig?: string;
+   opacity?: string;
 };
 
 const Line: React.FC<LineProps> = ({
@@ -35,6 +36,7 @@ const Line: React.FC<LineProps> = ({
    children,
    topBig,
    leftBig,
+   opacity,
 }) => {
    const { areAvatarTransitionsOn, applyFirstAppearTransition } = useSelector(
       (state: StoreType) => state.avatarState
@@ -53,10 +55,11 @@ const Line: React.FC<LineProps> = ({
             left: left,
             bottom: bottom,
             right: right,
+            opacity: opacity,
             transition: areAvatarTransitionsOn
                ? applyFirstAppearTransition
                   ? transition
-                  : "all 500ms ease"
+                  : "all 750ms ease-out"
                : "",
             ...breakpointUp1300px({
                top: topBig,

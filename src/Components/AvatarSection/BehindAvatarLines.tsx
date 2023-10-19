@@ -115,7 +115,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                         "clamp(2rem, 3vw, 4rem)",
                         "clamp(2rem, 3vw, 4rem)"
                      )}
-                     angle={handleValuesForModes("-135deg","-225deg")}
+                     angle={handleValuesForModes("-135deg", "-225deg")}
                      top="0"
                      right="1px"
                      transformOrigin="right"
@@ -128,7 +128,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                         topBig="0rem"
                         left="-9rem"
                         leftBig="-12rem"
-                        angle={handleValuesForModes("-45deg", "45deg")}
+                        angle={handleValuesForModes("-45deg", "0deg")}
                         transition={fifthTransitioContainer}
                         opacity={isIntersecting ? "1" : "0"}
                      />
@@ -141,6 +141,58 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                         top="-6.6rem"
                         topBig=".2rem"
                         left="-11.3rem"
+                        leftBig="-12.5rem"
+                     />
+                  </Line>
+               </Line>
+            </Circle>
+         </Line>
+         <Line
+            name="React.js"
+            length={handleLineWidth(
+               "clamp(5rem, 12vw, 16rem)",
+               "clamp(5rem, 13vw, 16rem)"
+            )}
+            angle={handleValuesForModes("-90deg", "-135deg")}
+            transition={firstTransitionLine}
+            opacity={handleValuesForModes("0", "1")}
+         >
+            <Circle
+               opacity={isIntersecting ? "1" : "0"}
+               transition={secondTransitionCircle}
+            >
+               <Line
+                  length={handleLineWidth(
+                     "clamp(2rem, 6vw, 5rem)",
+                     "clamp(2rem, 6vw, 5rem)"
+                  )}
+                  angle={handleValuesForModes("-45deg", "-45deg")}
+                  top={handleValuesForModes("0.1rem", ".1rem")}
+                  topBig="0.2rem"
+                  left={handleValuesForModes("0.9rem", ".9rem")}
+                  leftBig="1.3rem"
+                  transition={thirdTransitionLine}
+               >
+                  <Line
+                     length={handleLineWidth(
+                        "clamp(2rem, 3vw, 4rem)",
+                        "clamp(2rem, 3vw, 4rem)"
+                     )}
+                     angle={handleValuesForModes("-135deg", "-225deg")}
+                     top="0"
+                     right="1px"
+                     transformOrigin="right"
+                     transition={fourthTransitionLine}
+                  >
+                     <SkillContainer
+                        title="React.js"
+                        number="01"
+                        pdf={CourseaMetaCertificateAH}
+                        pdfName="Holman_Meta_Certificate"
+                        angle={handleValuesForModes("0deg", "45deg")}
+                        top="-6.6rem"
+                        topBig=".2rem"
+                        left="-11rem"
                         leftBig="-12.5rem"
                      />
                   </Line>
@@ -168,7 +220,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                   angle={handleValuesForModes("0deg", "45deg")}
                   top={handleValuesForModes("0.4rem", ".8rem")}
                   topBig="0.6rem"
-                  left={handleValuesForModes("1rem", ".8rem")}
+                  left={handleValuesForModes("1rem", ".9rem")}
                   leftBig="1.6rem"
                   transition={thirdTransitionLine}
                >
@@ -210,13 +262,14 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
             </Circle>
          </Line>
          <Line
-            name="Hobbies/Figma"
+            name="Goals"
             length={handleLineWidth(
-               "clamp(4.5rem, 9vw, 11rem)",
+               "clamp(4.5rem, 14vw, 18rem)",
                "clamp(4.5rem, 13vw, 11rem)"
             )}
-            angle={handleValuesForModes("135deg", "45deg")}
+            angle={handleValuesForModes("135deg", "90deg")}
             transition={firstTransitionLine}
+            opacity={handleValuesForModes("1", "0")}
          >
             <Circle
                opacity={isIntersecting ? "1" : "0"}
@@ -224,10 +277,10 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
             >
                <Line
                   length={handleLineWidth(
-                     "clamp(2rem, 8vw, 13rem)",
+                     "clamp(2rem, 6vw, 13rem)",
                      "clamp(2rem, 7vw, 13rem)"
                   )}
-                  angle={handleValuesForModes("45deg", "-45deg")}
+                  angle={handleValuesForModes("45deg", "45deg")}
                   top={handleValuesForModes(".8rem", ".1rem")}
                   topBig="1.3rem"
                   left={handleValuesForModes(".9rem", ".9rem")}
@@ -236,27 +289,27 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                >
                   <Line
                      length={handleLineWidth(
-                        "clamp(1rem, 2vw, 5rem)",
+                        "clamp(1rem, 1vw, 5rem)",
                         "clamp(1rem, 2vw, 5rem)"
                      )}
-                     angle={handleValuesForModes("135deg", "225deg")}
+                     angle={handleValuesForModes("225deg", "135deg")}
                      top="0"
                      right="1px"
                      transformOrigin="right"
                      transition={fourthTransitionLine}
                   >
                      <AboutMeInfoContainer
-                        title={titleHobbies}
-                        description={descriptionHobbies}
-                        top="-5.4rem"
+                        title={titleGoals}
+                        description={descriptionGoals}
+                        top="-.8rem"
                         topBig="-6.8rem"
-                        left="-11rem"
+                        left="-10.5rem"
                         leftBig="-15.75rem"
-                        angle="45deg"
+                        angle={handleValuesForModes("-45deg", "0")}
                         transition={fifthTransitioContainer}
                         opacity={isIntersecting ? "1" : "0"}
                      />
-                     <SkillContainer
+                     {/* <SkillContainer
                         title="Figma"
                         number="01"
                         pdf={CourseaMetaCertificateAH}
@@ -266,19 +319,20 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                         topBig=".2rem"
                         left="-8.7rem"
                         leftBig="-12.5rem"
-                     />
+                     /> */}
                   </Line>
                </Line>
             </Circle>
          </Line>
          <Line
-            name="Level/Meta"
+            name="Level"
             length={handleLineWidth(
-               "clamp(5rem, 8vw, 17rem)",
+               "clamp(5rem, 13vw, 17rem)",
                "clamp(4rem, 8vw, 17rem)"
             )}
-            angle={handleValuesForModes("-45deg", "-135deg")}
+            angle={handleValuesForModes("-45deg", "-90deg")}
             transition={firstTransitionLine}
+            opacity={handleValuesForModes("1", "0")}
          >
             <Circle
                opacity={isIntersecting ? "1" : "0"}
@@ -286,10 +340,10 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
             >
                <Line
                   length={handleLineWidth(
-                     "clamp(1rem, 10vw, 8rem)",
+                     "clamp(1rem, 7vw, 8rem)",
                      "clamp(1rem, 7vw, 8rem)"
                   )}
-                  angle={handleValuesForModes("45deg", "-45deg")}
+                  angle={handleValuesForModes("45deg", "45deg")}
                   top={handleValuesForModes("0.8rem", "0.1rem")}
                   topBig="1.2rem"
                   left={handleValuesForModes("1rem", ".9rem")}
@@ -301,7 +355,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                         "clamp(2rem, 3vw, 4rem)",
                         "clamp(2rem, 5vw, 15rem)"
                      )}
-                     angle={handleValuesForModes("135deg", "225deg")}
+                     angle={handleValuesForModes("225deg", "135deg")}
                      top="0"
                      right="1px"
                      transformOrigin="right"
@@ -310,15 +364,15 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                      <AboutMeInfoContainer
                         title={titleLevel}
                         description={descriptionLevel}
-                        top="-4.1rem"
+                        top="-.6rem"
                         topBig="-5.4rem"
                         left="-9.5rem"
                         leftBig="-12.5rem"
-                        angle="-135deg"
+                        angle={handleValuesForModes("135deg", "180deg")}
                         transition={fifthTransitioContainer}
                         opacity={isIntersecting ? "1" : "0"}
                      />
-                     <SkillContainer
+                     {/* <SkillContainer
                         title="Frontend engineer"
                         number="01"
                         pdf={CourseaMetaCertificateAH}
@@ -328,7 +382,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                         topBig=".2rem"
                         left="-11rem"
                         leftBig="-12.5rem"
-                     />
+                     /> */}
                   </Line>
                </Line>
             </Circle>
@@ -396,9 +450,9 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
             </Circle>
          </Line>
          <Line
-            name="Goals/Typescript"
+            name="Hobbies/Typescript"
             length={handleLineWidth(
-               "clamp(6rem, 10vw, 14rem)",
+               "clamp(6rem, 13vw, 14rem)",
                "clamp(6rem, 7vw, 14rem)"
             )}
             angle={handleValuesForModes("45deg", "0")}
@@ -422,7 +476,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                >
                   <Line
                      length={handleLineWidth(
-                        "clamp(2rem, 6vw, 7rem)",
+                        "clamp(2rem, 2vw, 7rem)",
                         "clamp(2rem, 2vw, 4rem)"
                      )}
                      angle={handleValuesForModes("-135deg", "-225deg")}
@@ -432,17 +486,70 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                      transition={fourthTransitionLine}
                   >
                      <AboutMeInfoContainer
-                        title={titleGoals}
-                        description={descriptionGoals}
-                        top="-1.9rem"
+                        title={titleHobbies}
+                        description={descriptionHobbies}
+                        top="-3.5rem"
                         topBig="-3.4rem"
-                        right="5rem"
+                        right="2.5rem"
                         angle={handleValuesForModes("135deg", "180deg")}
                         transition={fifthTransitioContainer}
                         opacity={isIntersecting ? "1" : "0"}
                      />
+
                      <SkillContainer
                         title="Typescript"
+                        number="01"
+                        pdf={CourseaMetaCertificateAH}
+                        pdfName="Holman_Meta_Certificate"
+                        angle={handleValuesForModes("-180deg", "-135deg")}
+                        top="-4.1rem"
+                        topBig=".2rem"
+                        left="-9.5rem"
+                        leftBig="-12.5rem"
+                     />
+                  </Line>
+               </Line>
+            </Circle>
+         </Line>
+         <Line
+            name="Figma"
+            length={handleLineWidth(
+               "clamp(6rem, 10vw, 14rem)",
+               "clamp(6rem, 14vw, 16rem)"
+            )}
+            angle={handleValuesForModes("90deg", "45deg")}
+            transition={firstTransitionLine}
+            opacity={handleValuesForModes("0", "1")}
+         >
+            <Circle
+               opacity={isIntersecting ? "1" : "0"}
+               transition={secondTransitionCircle}
+            >
+               <Line
+                  length={handleLineWidth(
+                     "clamp(1rem, 6vw, 12rem)",
+                     "clamp(1rem, 9vw, 12rem)"
+                  )}
+                  angle={handleValuesForModes("-45deg", "-45deg")}
+                  top={handleValuesForModes("0rem", "0rem")}
+                  topBig="0.1rem"
+                  left={handleValuesForModes(".9rem", ".9rem")}
+                  leftBig="1.4rem"
+                  transition={thirdTransitionLine}
+               >
+                  <Line
+                     length={handleLineWidth(
+                        "clamp(2rem, 6vw, 7rem)",
+                        "clamp(2rem, 2vw, 4rem)"
+                     )}
+                     angle={handleValuesForModes("-135deg", "-225deg")}
+                     top="0"
+                     right="1px"
+                     transformOrigin="right"
+                     transition={fourthTransitionLine}
+                  >
+                     <SkillContainer
+                        title="Figma"
                         number="01"
                         pdf={CourseaMetaCertificateAH}
                         pdfName="Holman_Meta_Certificate"
