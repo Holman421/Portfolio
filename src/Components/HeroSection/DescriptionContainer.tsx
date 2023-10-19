@@ -154,7 +154,6 @@ const DescriptionContainer = () => {
                   // fontFamily: "'Open Sans', sans-serif",
                   fontFamily: font,
                   fontWeight: "300",
-                  transition: "all 600ms ease",
                   ...breakpointUp1300px({
                      width: "20rem",
                      marginTop: isDefaultLanguage ? "1.5rem" : "1.1rem",

@@ -103,8 +103,8 @@ const AboutMeInfoContainer: React.FC<AboutMeInfoContainerProps> = ({
             transition: applyFirstAppearTransition
                ? transition
                : selectedMode === "aboutMe"
-               ? "all 1000ms ease-out"
-               : "all 500ms ease-out",
+               ? "all 750ms ease-out"
+               : "all 250ms ease-out",
             position: "absolute",
             maxWidth: "10rem",
             top: top,

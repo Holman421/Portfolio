@@ -59,7 +59,7 @@ const ContactMeButton = () => {
    });
 
    const descriptionText = useSelectAppropriateText(
-      "Let's connect",
+      "Show projects",
       "Kontaktuj mě"
    );
 

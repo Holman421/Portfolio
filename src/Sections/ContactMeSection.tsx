@@ -5,6 +5,7 @@ import Chatbot from "../Components/Chatbot/Chatbot";
 import SectionWrapper from "../Components/SectionWrapper";
 import useIsVisible from "../Utils/CustomHooks/useIsVisible";
 import useSelectAppropriateText from "../Utils/CustomHooks/useSelectAppropriateText";
+import { createClipPath } from "../Utils/HelperFunctions/createClipPath";
 
 const ContactMeSection: React.FC = () => {
    const [ref, isIntersecting] = useIsVisible({
@@ -16,6 +17,29 @@ const ContactMeSection: React.FC = () => {
    const contactMeHeading = useSelectAppropriateText(
       "Contact me",
       "Kontaktuj mě"
+   );
+
+   const { clipPathOutside, clipPathInside } = createClipPath<8>(
+      [
+         { x: "0%", y: "0% + .5rem" },
+         { x: "0% + .5rem", y: "0%" },
+         { x: "100% - .5rem", y: "0%" },
+         { x: "100%", y: "0% + .5rem" },
+         { x: "100%", y: "100% - .5rem" },
+         { x: "100% - .5rem", y: "100%" },
+         { x: "0% + .5rem", y: "100%" },
+         { x: "0%", y: "100% - .5rem" },
+      ],
+      [
+         { x: "+ 1px", y: "+ 1px" },
+         { x: "+ 1px", y: "+ 1px" },
+         { x: "- 1px", y: "+ 1px" },
+         { x: "- 1px", y: "" },
+         { x: "- 1px", y: "- 1px" },
+         { x: "- 1px", y: "- 1px" },
+         { x: "+ 1px", y: "- 1px" },
+         { x: "+ 1px", y: "- 1px" },
+      ]
    );
 
    return (
@@ -41,7 +65,7 @@ const ContactMeSection: React.FC = () => {
                right: isIntersecting ? "50%" : "1.5rem",
                height: isIntersecting ? "30%" : "3rem",
                padding: "1rem",
-               background: "red",
+               background: "#CF6C29",
                width: isIntersecting ? "30%" : "6rem",
                transition:
                   "right 500ms ease, width 500ms ease 500ms, height 500ms ease 1000ms",
@@ -49,6 +73,16 @@ const ContactMeSection: React.FC = () => {
                display: "flex",
                justifyContent: "center",
                alignItems: "center",
+               clipPath: clipPathOutside,
+               "&::before": {
+                  content: '""',
+                  position: "absolute",
+                  background: "linear-gradient(180deg, #ce6c29 0%, #512b10 100%)",
+                  width: "100%",
+                  height: "100%",
+                  clipPath: clipPathInside,
+                  zIndex: "20",
+               },
             }}
          >
             Chatbot

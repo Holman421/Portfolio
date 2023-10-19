@@ -59,7 +59,7 @@ const Line: React.FC<LineProps> = ({
             transition: areAvatarTransitionsOn
                ? applyFirstAppearTransition
                   ? transition
-                  : "all 750ms ease-out"
+                  : "all 500ms ease-out"
                : "",
             ...breakpointUp1300px({
                top: topBig,

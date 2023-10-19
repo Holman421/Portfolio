@@ -22,6 +22,7 @@ type SkillContainerProps = {
    transition?: string;
    pdf: any;
    pdfName: string;
+   isComplete?: boolean;
 };
 
 const SkillContainer: React.FC<SkillContainerProps> = ({
@@ -38,6 +39,7 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
    transition,
    pdf,
    pdfName,
+   isComplete = true,
 }) => {
    const { ref, width } = useGetDivWidth();
    const isAbove1300px = useScreenSize();
@@ -94,16 +96,6 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
       ]
    );
 
-   const handleDownload = () => {
-      const url = "../Assets/UdemyCSSCertificateAH.pdf";
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", pdfName);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-   };
-
    const { showSkillsContainers, selectedMode } = useSelector(
       (state: StoreType) => state.avatarState
    );
@@ -115,8 +107,8 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
             visibility: showSkillsContainers ? "visible" : "hidden",
             transition:
                selectedMode === "skills"
-                  ? "all 1000ms ease-out"
-                  : "all 500ms ease-out",
+                  ? "all 750ms ease-out"
+                  : "all 250ms ease-out",
             position: "absolute",
             maxWidth: "10rem",
             top: top,
@@ -131,52 +123,48 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
             transform: `rotate(${angle})`,
          }}
       >
-         <a href={pdf} target="_blank">
-            <Box
-               ref={ref}
-               //  onClick={handleDownload}
-               sx={{
-                  height: "1.75rem",
-                  width: "8.6rem",
-                  marginTop: "2.5rem",
-                  clipPath: certificationClipPathOutside,
-                  backgroundColor: mainPallete.secondaryLight,
+         <Box
+            ref={ref}
+            sx={{
+               height: "1.75rem",
+               width: "8.6rem",
+               marginTop: "2.5rem",
+               clipPath: certificationClipPathOutside,
+               backgroundColor: mainPallete.secondaryLight,
+               position: "absolute",
+               ...breakpointUp1300px({
+                  height: "2.5rem",
+               }),
+               "&::before": {
+                  content: '""',
                   position: "absolute",
-                  cursor: "pointer",
-                  ...breakpointUp1300px({
-                     height: "2.5rem",
-                  }),
-                  "&::before": {
-                     content: '""',
-                     position: "absolute",
-                     //  background: "black",
-                     width: "100%",
-                     background: `linear-gradient(180deg, ${mainPallete.secondaryGradientLight} 0%, ${mainPallete.secondaryGraidentDark} 100%)`,
-                     height: "100%",
-                     clipPath: certificationClipPathInside,
-                     zIndex: "20",
-                  },
+                  width: "100%",
+                  background: `linear-gradient(180deg, ${mainPallete.secondaryGradientLight} 0%, ${mainPallete.secondaryGraidentDark} 100%)`,
+                  height: "100%",
+                  clipPath: certificationClipPathInside,
+                  zIndex: "20",
+               },
+            }}
+         >
+            <Box
+               sx={{
+                  position: "absolute",
+                  zIndex: "50",
+                  left: "1rem",
+                  bottom: ".5rem",
+                  fontSize: ".8rem",
+                  cursor: isComplete ? "pointer" : "auto",
                }}
             >
-               <Box
-                  sx={{
-                     position: "absolute",
-                     zIndex: "50",
-                     left: "1rem",
-                     bottom: ".5rem",
-                     fontSize: ".8rem",
-                  }}
-               >
-                  Certification
-               </Box>
+               <a href={isComplete ? pdf : undefined} target="_blank">
+                  {isComplete ? "Certification" : "In progress"}
+               </a>
             </Box>
-         </a>
+         </Box>
          <Box
             sx={{
                width: "13rem",
                height: "4.25rem",
-               //  width: "fit-content",
-               //  margin: "2rem",
                background: mainPallete.mainLight,
                clipPath: titleClipPathOutside,
                position: "relative",
@@ -184,7 +172,6 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
                   content: '""',
                   position: "absolute",
                   background: `linear-gradient(180deg, ${mainPallete.mainGradientLight} 0%, ${mainPallete.mainGradientDark} 100%)`,
-                  //  background: "black",
                   width: "100%",
                   height: "100%",
                   clipPath: titleClipPathInside,

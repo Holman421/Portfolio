@@ -104,7 +104,7 @@ const HeadingContainer = () => {
                   left: "2rem",
                   top: "20%",
                   fontFamily: font,
-                  transition: "all 600ms ease",
+                  // transition: "all 600ms ease",
                   ...breakpointUp1300px({
                      fontSize: isDefaultLanguage ? "1.3rem" : "1.5rem",
                   }),

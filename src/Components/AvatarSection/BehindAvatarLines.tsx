@@ -17,6 +17,10 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
    isIntersecting,
 }) => {
    const CourseaMetaCertificateAH = require("../../Assets/CourseaMetaCertificateAH.pdf");
+   const UdemyCSSCertificateAH = require("../../Assets/UdemyCSSCertificateAH.pdf");
+   const UdemyJSCertificateAH = require("../../Assets/UdemyJSCertificateAH.pdf");
+   const UdemyReactCertificateAH = require("../../Assets/UdemyReactCertificateAH.pdf");
+   const UdemyTsCertificateAH = require("../../Assets/UdemyTsCertificateAH.pdf");
 
    const titleName = useSelectAppropriateText("Name", "Jméno");
 
@@ -135,7 +139,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                      <SkillContainer
                         title="React.js"
                         number="01"
-                        pdf={CourseaMetaCertificateAH}
+                        pdf={UdemyReactCertificateAH}
                         pdfName="Holman_Meta_Certificate"
                         angle={handleValuesForModes("0deg", "45deg")}
                         top="-6.6rem"
@@ -185,7 +189,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                      transition={fourthTransitionLine}
                   >
                      <SkillContainer
-                        title="React.js"
+                        title="Frontend Developer"
                         number="01"
                         pdf={CourseaMetaCertificateAH}
                         pdfName="Holman_Meta_Certificate"
@@ -249,7 +253,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                      <SkillContainer
                         title="Javascript"
                         number="01"
-                        pdf={CourseaMetaCertificateAH}
+                        pdf={UdemyJSCertificateAH}
                         pdfName="Holman_Meta_Certificate"
                         angle={handleValuesForModes("0", "45deg")}
                         top="-6.5rem"
@@ -437,7 +441,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                      <SkillContainer
                         title="CSS-SASS-MUI"
                         number="01"
-                        pdf={CourseaMetaCertificateAH}
+                        pdf={UdemyCSSCertificateAH}
                         pdfName="Holman_Meta_Certificate"
                         angle={handleValuesForModes("-180deg", "-135deg")}
                         top="-4.1rem"
@@ -499,7 +503,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                      <SkillContainer
                         title="Typescript"
                         number="01"
-                        pdf={CourseaMetaCertificateAH}
+                        pdf={UdemyTsCertificateAH}
                         pdfName="Holman_Meta_Certificate"
                         angle={handleValuesForModes("-180deg", "-135deg")}
                         top="-4.1rem"
@@ -558,6 +562,7 @@ const BehindAvatarLines: React.FC<BedingAvatarLinesProps> = ({
                         topBig=".2rem"
                         left="-9.5rem"
                         leftBig="-12.5rem"
+                        isComplete={false}
                      />
                   </Line>
                </Line>
