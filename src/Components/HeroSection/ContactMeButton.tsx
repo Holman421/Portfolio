@@ -1,14 +1,39 @@
 import { Box } from "@mui/material";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleLanguage } from "../../Redux/reducers/themeReducer";
 import { StoreType } from "../../Redux/store/store";
 import useIsVisible from "../../Utils/CustomHooks/useIsVisible";
 import useSelectAppropriateText from "../../Utils/CustomHooks/useSelectAppropriateText";
-import { breakpointUp1300px } from "../../Utils/HelperFunctions/breakpoints";
+import { breakpointLower650px } from "../../Utils/HelperFunctions/breakpoints";
 import { createClipPath } from "../../Utils/HelperFunctions/createClipPath";
 
 const ContactMeButton = () => {
+   const {
+      clipPathOutside: clipPathOutsideSmall,
+      clipPathInside: clipPathInsideSmall,
+   } = createClipPath<8>(
+      [
+         { x: "0%", y: "0% + .5rem" },
+         { x: "0%", y: "0%" },
+         { x: "100% - 1rem", y: "0%" },
+         { x: "100%", y: "0%" },
+         { x: "100%", y: "100% - 1rem" },
+         { x: "100% - 1rem", y: "100%" },
+         { x: "0% + 1rem", y: "100%" },
+         { x: "0%", y: "100% - 1rem" },
+      ],
+      [
+         { x: "+ 1px", y: "+ 1px" },
+         { x: "+ 1px", y: "+ 1px" },
+         { x: "- 1px", y: "+ 1px" },
+         { x: "- 1px", y: "+ 1px" },
+         { x: "- 1px", y: "- 1px" },
+         { x: "- 1px", y: "- 1px" },
+         { x: "+ 1px", y: "- 1px" },
+         { x: "+ 1px", y: "- 1px" },
+      ]
+   );
+
    const { clipPathOutside, clipPathInside } = createClipPath<8>(
       [
          { x: "0%", y: "0% + .5rem" },
@@ -32,26 +57,6 @@ const ContactMeButton = () => {
       ]
    );
 
-   const {
-      clipPathOutside: clipPathOutsideBig,
-      clipPathInside: clipPathInsideBig,
-   } = createClipPath<5>(
-      [
-         { x: "0%", y: "0%" },
-         { x: "100% - 1.5rem", y: "0%" },
-         { x: "100%", y: "0% + 1.5rem" },
-         { x: "100%", y: "100%" },
-         { x: "0%", y: "100%" },
-      ],
-      [
-         { x: "+ 1px", y: "+ 1px" },
-         { x: "- 1px", y: "+ 1px" },
-         { x: "- 1px", y: "" },
-         { x: "- 1px", y: "- 1px" },
-         { x: "+ 1px", y: "- 1px" },
-      ]
-   );
-
    const [ref, isIntersecting] = useIsVisible({
       root: null,
       rootMargin: "0px",
@@ -60,7 +65,7 @@ const ContactMeButton = () => {
 
    const descriptionText = useSelectAppropriateText(
       "Show projects",
-      "Kontaktuj mě"
+      "Ukázat projekty"
    );
 
    const font = useSelectAppropriateText(
@@ -85,25 +90,23 @@ const ContactMeButton = () => {
             transform: isIntersecting ? "translateY()" : "translateY(4rem)",
             opacity: isIntersecting ? "1" : "0",
             transition: "all 600ms ease-in, top 500ms ease",
-            position: "absolute",
+            position: "relative",
             padding: "1rem 2.5rem",
             width: "13rem",
             height: "3.5rem",
-            top: "7.5rem",
-            right: "10.4rem",
             background: "#CF6C29",
+            margin: "-.3rem 0 0 5.9rem",
             clipPath: clipPathOutside,
             border: "none",
             cursor: "pointer",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            ...breakpointUp1300px({
-               width: "15rem",
-               height: "4rem",
-               top: "12.3rem",
-               right: "16.3rem",
-               clipPath: clipPathOutsideBig,
+            ...breakpointLower650px({
+               clipPath: clipPathOutsideSmall,
+               width: "14rem",
+               height: "2.5rem",
+               margin: ".35rem 0 0 2rem",
             }),
             "&:hover": { opacity: ".8" },
             "&::before": {
@@ -117,8 +120,8 @@ const ContactMeButton = () => {
                transform: "translate(-50%, -50%)",
                clipPath: clipPathInside,
                transition: "all 600ms ease-in",
-               ...breakpointUp1300px({
-                  clipPath: clipPathInsideBig,
+               ...breakpointLower650px({
+                  clipPath: clipPathInsideSmall,
                }),
             },
          }}
@@ -129,6 +132,9 @@ const ContactMeButton = () => {
                fontSize: "1.25rem",
                whiteSpace: "nowrap",
                fontFamily: font,
+               ...breakpointLower650px({
+                  fontSize: "1rem",
+               }),
             }}
          >
             {descriptionText}

@@ -7,13 +7,13 @@ import useIsVisible from "../Utils/CustomHooks/useIsVisible";
 import { useDispatch, useSelector } from "react-redux";
 import {
    setApplyFirstAppearTransition,
-   setAreAboutMeTransitionsOn,
    setSelectedMode,
    setShowAboutMeContainers,
    setShowSkillsContainers,
 } from "../Redux/reducers/avatarReducer";
 import { StoreType } from "../Redux/store/store";
 import { SelectedMode } from "../Types/Types";
+import AvatarSectionButton from "./AvatarSectionButton";
 
 const AvatarSection: React.FC = () => {
    const { selectedMode } = useSelector(
@@ -38,7 +38,7 @@ const AvatarSection: React.FC = () => {
             dispatch(setApplyFirstAppearTransition(false));
          }, 3000);
       }
-   }, [isIntersecting]);
+   }, [isIntersecting, dispatch]);
 
    const handleSwitchModes = (mode: SelectedMode) => {
       if (selectedMode === mode) {
@@ -91,44 +91,19 @@ const AvatarSection: React.FC = () => {
                gap: "clamp(4.5rem, 10%, 10rem)",
             }}
          >
-            <Box
-               onClick={() => {
-                  handleSwitchModes("aboutMe");
-               }}
-               component={"button"}
-               sx={{
-                  zIndex: "10000",
-                  border: "none",
-                  cursor: "pointer",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  background: selectedMode === "skills" ? "#CF6C29" : "#29C4CE",
-                  padding: ".5rem 1rem",
-               }}
-            >
-               About
-            </Box>
+            <AvatarSectionButton
+               handleSwitchModes={handleSwitchModes}
+               isActive={selectedMode === "aboutMe"}
+               name="About"
+               handleSwitchModesArgument="aboutMe"
+            />
 
-            <Box
-               onClick={() => {
-                  handleSwitchModes("skills");
-               }}
-               component={"button"}
-               sx={{
-                  zIndex: "10000",
-                  border: "none",
-                  cursor: "pointer",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  background:
-                     selectedMode === "aboutMe" ? "#CF6C29" : "#29C4CE",
-                  padding: ".5rem 1rem",
-               }}
-            >
-               Skills
-            </Box>
+            <AvatarSectionButton
+               handleSwitchModes={handleSwitchModes}
+               isActive={selectedMode === "skills"}
+               name="Skills"
+               handleSwitchModesArgument="skills"
+            />
          </Box>
       </SectionWrapper>
    );

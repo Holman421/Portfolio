@@ -20,6 +20,7 @@ type LineProps = {
    topBig?: string;
    leftBig?: string;
    opacity?: string;
+   shouldRender?: boolean;
 };
 
 const Line: React.FC<LineProps> = ({
@@ -37,6 +38,7 @@ const Line: React.FC<LineProps> = ({
    topBig,
    leftBig,
    opacity,
+   shouldRender = true,
 }) => {
    const { areAvatarTransitionsOn, applyFirstAppearTransition } = useSelector(
       (state: StoreType) => state.avatarState
@@ -46,6 +48,7 @@ const Line: React.FC<LineProps> = ({
       <Box
          sx={{
             position: "absolute",
+            visibility: shouldRender ? "visible" : "hidden",
             backgroundColor: color,
             height: thickness,
             width: length,
@@ -55,7 +58,7 @@ const Line: React.FC<LineProps> = ({
             left: left,
             bottom: bottom,
             right: right,
-            opacity: opacity,
+            opacity: shouldRender ? opacity : "0",
             transition: areAvatarTransitionsOn
                ? applyFirstAppearTransition
                   ? transition

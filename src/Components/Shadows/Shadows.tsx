@@ -1,11 +1,16 @@
 import { Box } from "@mui/material";
 import React, { useState } from "react";
-import { breakpointUp1300px } from "../../Utils/HelperFunctions/breakpoints";
+import {
+   breakpointLower650px,
+   breakpointUp1300px,
+} from "../../Utils/HelperFunctions/breakpoints";
 
 type ShadowsProps = {
    top?: string;
    left?: string;
+   leftSmall?: string;
    right?: string;
+   rightSmall?: string;
    scale?: number;
    zIndex?: string;
 };
@@ -13,7 +18,9 @@ type ShadowsProps = {
 const Shadows: React.FC<ShadowsProps> = ({
    top,
    left,
+   leftSmall,
    right,
+   rightSmall,
    scale = 1,
    zIndex,
 }) => {
@@ -70,6 +77,11 @@ const Shadows: React.FC<ShadowsProps> = ({
             transformOrigin: "top",
             zIndex: zIndex,
             transition: "all 500ms ease",
+            ...breakpointLower650px({
+               transform: `scale(${scale * 0.8}) skew(-23deg)`,
+               right: rightSmall,
+               left: leftSmall,
+            }),
             ...breakpointUp1300px({
                transform: `scale(${scale * 1.2}) skew(-23deg)`,
             }),

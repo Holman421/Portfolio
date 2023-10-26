@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useIsVisible from "../../Utils/CustomHooks/useIsVisible";
 import {
    breakpointLower800px,
@@ -118,7 +118,7 @@ const ProjectContainer: React.FC<ProjectContainerProps> = ({
             <Box
                sx={{
                   position: "absolute",
-                  bottom: "-2.25rem",
+                  bottom: "-2.2rem",
                   left: "-2.1rem",
                   width: !isOpen && isHovered ? "3rem" : "0",
                   height: ".5px",

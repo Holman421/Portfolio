@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import React from "react";
-import SkillContainer from "../Components/AvatarSection/SkillContainer";
 import Chatbot from "../Components/Chatbot/Chatbot";
 import SectionWrapper from "../Components/SectionWrapper";
 import useIsVisible from "../Utils/CustomHooks/useIsVisible";
@@ -8,6 +7,8 @@ import useSelectAppropriateText from "../Utils/CustomHooks/useSelectAppropriateT
 import { createClipPath } from "../Utils/HelperFunctions/createClipPath";
 
 const ContactMeSection: React.FC = () => {
+   const Holman_CV = require("../Assets/Holman_CV.pdf");
+
    const [ref, isIntersecting] = useIsVisible({
       root: null,
       rootMargin: "0px",
@@ -77,7 +78,8 @@ const ContactMeSection: React.FC = () => {
                "&::before": {
                   content: '""',
                   position: "absolute",
-                  background: "linear-gradient(180deg, #ce6c29 0%, #512b10 100%)",
+                  background:
+                     "linear-gradient(180deg, #ce6c29 0%, #512b10 100%)",
                   width: "100%",
                   height: "100%",
                   clipPath: clipPathInside,
@@ -86,6 +88,11 @@ const ContactMeSection: React.FC = () => {
             }}
          >
             Chatbot
+            <Box sx={{ position: "relative", zIndex: "100" }}>
+               <a href={Holman_CV} target="_blank">
+                  CV
+               </a>
+            </Box>
          </Box>
          <Box ref={ref} sx={{ marginTop: "2rem" }}>
             <Chatbot isIntersecting={isIntersecting} />

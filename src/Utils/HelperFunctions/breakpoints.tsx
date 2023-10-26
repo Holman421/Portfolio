@@ -1,5 +1,13 @@
 import { SxProps } from "@mui/material";
 
+export const breakpointLower650px = (sx: object) => {
+   return {
+      "@media (max-width: 650px)": {
+         ...sx,
+      },
+   };
+};
+
 export const breakpointLower800px = (sx: object) => {
    return {
       "@media (max-width: 800px)": {

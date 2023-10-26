@@ -5,7 +5,10 @@ import { mainPallete } from "../../Config/Colors";
 import { StoreType } from "../../Redux/store/store";
 import useGetDivWidth from "../../Utils/CustomHooks/useGetDivWidth";
 import useScreenSize from "../../Utils/CustomHooks/useScreenSize";
-import { breakpointUp1300px } from "../../Utils/HelperFunctions/breakpoints";
+import {
+   breakpointLower800px,
+   breakpointUp1300px,
+} from "../../Utils/HelperFunctions/breakpoints";
 import { createClipPath } from "../../Utils/HelperFunctions/createClipPath";
 
 type SkillContainerProps = {
@@ -50,7 +53,7 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
    } = createClipPath<5>(
       [
          { x: "0%", y: "0%" },
-         { x: "100% - 1.75rem", y: "0%" },
+         { x: `100% - ${isAbove1300px ? "2.2rem" : "1.75rem"}`, y: "0%" },
          { x: "100%", y: "100%" },
          { x: "0% + .5rem", y: "100%" },
          { x: "0%", y: "100% - .5rem" },
@@ -78,8 +81,11 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
          { x: "100%", y: "100% - 1rem" },
          { x: "100% - 1rem", y: "100%" },
          { x: "100% - 4rem", y: "100%" },
-         { x: "100% - 6rem", y: "100% - 2rem" },
-         { x: "0%", y: "100% - 2rem" },
+         {
+            x: `100% - ${isAbove1300px ? "6.4rem" : "6rem"}`,
+            y: `100% - ${isAbove1300px ? "2.4rem" : "2rem"}`,
+         },
+         { x: "0%", y: `100% - ${isAbove1300px ? "2.4rem" : "2rem"}` },
       ],
       [
          { x: "+ 1px", y: "" },
@@ -115,12 +121,12 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
             left: left,
             right: right,
             bottom: bottom,
+            transform: `rotate(${angle})`,
             ...breakpointUp1300px({
                maxWidth: "15rem",
                top: topBig,
                left: leftBig,
             }),
-            transform: `rotate(${angle})`,
          }}
       >
          <Box
@@ -132,8 +138,11 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
                clipPath: certificationClipPathOutside,
                backgroundColor: mainPallete.secondaryLight,
                position: "absolute",
+               transition: "all 500ms ease",
                ...breakpointUp1300px({
-                  height: "2.5rem",
+                  marginTop: "3.1rem",
+                  height: "2.2rem",
+                  width: "11.6rem",
                }),
                "&::before": {
                   content: '""',
@@ -154,6 +163,9 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
                   bottom: ".5rem",
                   fontSize: ".8rem",
                   cursor: isComplete ? "pointer" : "auto",
+                  ...breakpointUp1300px({
+                     fontSize: "1rem",
+                  }),
                }}
             >
                <a href={isComplete ? pdf : undefined} target="_blank">
@@ -164,10 +176,12 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
          <Box
             sx={{
                width: "13rem",
-               height: "4.25rem",
+               //  height: "4.25rem",
+               aspectRatio: "52/17",
                background: mainPallete.mainLight,
                clipPath: titleClipPathOutside,
                position: "relative",
+               transition: "all 500ms ease",
                "&::before": {
                   content: '""',
                   position: "absolute",
@@ -177,6 +191,9 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
                   clipPath: titleClipPathInside,
                   zIndex: "20",
                },
+               ...breakpointUp1300px({
+                  width: "16rem",
+               }),
             }}
          />
          <Box
@@ -196,6 +213,10 @@ const SkillContainer: React.FC<SkillContainerProps> = ({
                left: "1rem",
                top: ".75rem",
                fontSize: ".8rem",
+               ...breakpointUp1300px({
+                  top: ".9rem",
+                  fontSize: "1.1rem",
+               }),
             }}
          >
             {title}
